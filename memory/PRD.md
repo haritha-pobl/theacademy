@@ -28,6 +28,7 @@ Update the site using provided HTML (`the-academy-v3-site (6).html`). Make homep
 - Owner notification fallback: added thari0907@gmail.com — verified 202 Accepted (2026-06)
 - Scroll fix: removed Lenis scroll-hijacking, restored native scrolling with passive-listener hero parallax (tested, 2026-06)
 - CSV export: one-click "Download CSV" per tab in CMS dashboard, Excel-friendly BOM (tested, 2026-06)
+- Nav cleanup: removed Outcomes & Landing tabs from top nav; Signature badge right-aligned on all course cards; Level 2 sections now collapsed by default with animated expand toggle (mkt/hr/tech); Full-Stack Accountant restructured — all 5 modules under Foundation, no Level 2 (screenshot-verified, 2026-06)
 
 ## Known Issue (user-side, not code)
 - `theacademyindia.com` has NO MX records (verified via Google DNS + port-25 probe). Mail to haritha@/lathika@ that domain bounces (422 from provider). User reads mail via Google Workspace → needs to add Google MX record at DNS host (nameservers dns1-4.p07.nsone.net, likely Squarespace):

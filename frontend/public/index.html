@@ -294,7 +294,13 @@
   .sig-head{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;}
   .sig-head h3{font-size:24px;}
   .sig-head .sig-sub{font-size:14px;color:#8FA0B3;margin-top:6px;}
-  .sig-badge{background:var(--navy);color:var(--gold);font-size:12px;font-weight:700;letter-spacing:.08em;padding:7px 14px;border-radius:999px;text-transform:uppercase;}
+  .sig-badge{background:var(--navy);color:var(--gold);font-size:12px;font-weight:700;letter-spacing:.08em;padding:7px 14px;border-radius:999px;text-transform:uppercase;margin-left:auto;flex-shrink:0;white-space:nowrap;}
+  .level2-toggle{display:flex;align-items:center;gap:10px;width:100%;background:var(--neutral);border:1px solid #eee;margin-top:30px;padding:14px 18px;border-radius:12px;cursor:pointer;font-family:inherit;font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);text-align:left;transition:background-color .2s ease;}
+  .level2-toggle:hover{background:var(--gold-soft);}
+  .level2-toggle .chev{margin-left:auto;color:var(--navy);font-size:14px;transition:transform .4s ease;}
+  .level2-toggle.open .chev{transform:rotate(180deg);}
+  .level2-wrap{max-height:0;overflow:hidden;opacity:0;transform:translateY(12px);transition:max-height .7s cubic-bezier(.2,.7,.3,1),opacity .5s ease,transform .5s ease;}
+  .level2-wrap.open{max-height:6000px;opacity:1;transform:translateY(0);}
   .module-toggle{margin-top:24px;background:var(--gold);color:var(--navy);border:none;padding:12px 22px;border-radius:999px;font-weight:700;font-size:13.5px;cursor:pointer;font-family:inherit;}
   .modules{display:none;margin-top:28px;border-top:1px solid #eee;padding-top:26px;}
   .modules.open{display:block;}
@@ -419,8 +425,6 @@
       <button class="tab-btn active" data-page="home" data-testid="nav-tab-home">Home</button>
       <button class="tab-btn" data-page="story" data-testid="nav-tab-story">Why The Academy</button>
       <button class="tab-btn" data-page="programs" data-testid="nav-tab-programs">Programs</button>
-      <button class="tab-btn" data-page="outcomes" data-testid="nav-tab-outcomes">Outcomes</button>
-      <button class="tab-btn" id="backToLandingLink" style="color:var(--gold);">&larr; Landing</button>
       <a href="#" class="apply-btn" data-page="apply" data-testid="nav-apply-button">Apply Now</a>
     </div>
     <button class="mobile-toggle" id="mobileToggle" data-testid="mobile-menu-button">&#9776;</button>
@@ -610,7 +614,8 @@
             </div>
 
             <p class="hook-line">Not sure where to start? This is the part that makes digital marketing make sense — no jargon, no experience needed.</p>
-            <div class="level-tag" style="margin-top:30px;">Level 2 — Choose Your Specialization</div>
+            <button class="level2-toggle" type="button" onclick="toggleLevel2('mkt', this)" data-testid="level2-toggle-mkt">Level 2 — Choose Your Specialization <span class="chev">▾</span></button>
+            <div class="level2-wrap" id="l2-mkt">
             <div class="mkt-spec-nav">
               <button class="mkt-spec-btn active" onclick="toggleSpec('social')" type="button">Social Media Marketing</button>
               <button class="mkt-spec-btn" onclick="toggleSpec('search')" type="button">Search Engine Marketing</button>
@@ -690,6 +695,7 @@
                 <div class="tools"><span>Portfolio build</span><span>Interview prep</span></div>
               </div>
             </div>
+            </div>
 
           </div>
         </div>
@@ -714,7 +720,8 @@
             </div>
 
             <p class="hook-line">New to HR, or moving in from another function? This is the part that makes people operations make sense — how roles, targets, and expectations actually get set.</p>
-            <div class="level-tag" style="margin-top:30px;">Level 2 — Choose Your Advanced Certification</div>
+            <button class="level2-toggle" type="button" onclick="toggleLevel2('hr', this)" data-testid="level2-toggle-hr">Level 2 — Choose Your Advanced Certification <span class="chev">▾</span></button>
+            <div class="level2-wrap" id="l2-hr">
             <div class="mkt-spec-nav">
               <button class="mkt-spec-btn active" onclick="toggleSpec('hiring', this)" type="button">Hiring & Onboarding</button>
               <button class="mkt-spec-btn" onclick="toggleSpec('perf', this)" type="button">Performance & Culture</button>
@@ -783,6 +790,7 @@
               <div class="obj">Objective: Present a complete HR system for a real or simulated company, built around your chosen certification.</div>
               <div class="tools"><span>Portfolio build</span><span>Interview prep</span></div>
             </div>
+            </div>
 
           </div>
         </div>
@@ -792,7 +800,7 @@
           <div class="sig-head">
             <div>
               <h3>The Full-Stack Accountant</h3>
-              <div class="sig-sub">Foundation (30 hrs · 3 months) + Advanced Certification — Tally, Financial Analysis, Bookkeeping & Compliance</div>
+              <div class="sig-sub">Foundation (30 hrs · 3 months) — Tally, Financial Analysis, Bookkeeping & Compliance</div>
             </div>
             <span class="sig-badge">Signature</span>
           </div>
@@ -807,24 +815,23 @@
             </div>
 
             <p class="hook-line">Numbers-shy? This is the module that removes the fear — plain-English finance, no jargon.</p>
-            <div class="level-tag" style="margin-top:30px;">Level 2 — Advanced Certification: Tally, Financial Analysis, Bookkeeping & Compliance</div>
             <div class="module">
-              <h5>Bookkeeping & Compliance</h5>
+              <h5>Module 2 — Bookkeeping & Compliance</h5>
               <div class="obj">Objective: Manage GST, TDS, and day-to-day books accurately and independently in Tally and Zoho Books.</div>
               <div class="tools"><span>Tally</span><span>Zoho Books</span><span>GST portal</span></div>
             </div>
             <div class="module">
-              <h5>Financial Planning & Budgeting</h5>
+              <h5>Module 3 — Financial Planning & Budgeting</h5>
               <div class="obj">Objective: Build budgets and cash flow forecasts for a real business.</div>
               <div class="tools"><span>Excel modelling</span><span>Forecasting tools</span></div>
             </div>
             <div class="module">
-              <h5>AI-Assisted Financial Analysis</h5>
+              <h5>Module 4 — AI-Assisted Financial Analysis</h5>
               <div class="obj">Objective: Use AI copilots to analyze Tally and Zoho Books statements and flag anomalies faster.</div>
               <div class="tools"><span>Tally</span><span>Zoho Books</span><span>AI spreadsheet copilots</span></div>
             </div>
             <div class="module">
-              <h5>Capstone — Full Financial Audit</h5>
+              <h5>Module 5 — Capstone: Full Financial Audit</h5>
               <div class="obj">Objective: Present a full financial health review, built from Tally and Zoho Books records, for a real or simulated business.</div>
               <div class="tools"><span>Portfolio build</span><span>Interview prep</span></div>
             </div>
@@ -867,7 +874,8 @@
             </div>
 
             <p class="hook-line">New to tech? This is the part that makes data and AI make sense — no coding background needed to start.</p>
-            <div class="level-tag" style="margin-top:30px;">Level 2 — Choose Your Specialization</div>
+            <button class="level2-toggle" type="button" onclick="toggleLevel2('tech', this)" data-testid="level2-toggle-tech">Level 2 — Choose Your Specialization <span class="chev">▾</span></button>
+            <div class="level2-wrap" id="l2-tech">
             <div class="mkt-spec-nav">
               <button class="mkt-spec-btn active" onclick="toggleSpec('dataanalytics', this)" type="button">Data Analytics</button>
               <button class="mkt-spec-btn" onclick="toggleSpec('datascience', this)" type="button">Data Science</button>
@@ -971,6 +979,7 @@
                 <div class="obj">Objective: Present a working GenAI application to an industry panel.</div>
                 <div class="tools"><span>Portfolio build</span><span>Interview prep</span></div>
               </div>
+            </div>
             </div>
 
           </div>
@@ -1398,6 +1407,10 @@
 
 function toggleModules(id){
     document.getElementById(id).classList.toggle('open');
+  }
+  function toggleLevel2(id, btn){
+    document.getElementById('l2-' + id).classList.toggle('open');
+    btn.classList.toggle('open');
   }
   function toggleSpec(id, btn){
     const trigger = btn || event.currentTarget;
