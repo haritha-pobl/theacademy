@@ -16,7 +16,7 @@
     --gold-soft: rgba(218,160,23,.14);
   }
   *{box-sizing:border-box;margin:0;padding:0;}
-  html{scroll-behavior:smooth;}
+  html{scroll-behavior:auto;}
   body{font-family:'Poppins',sans-serif;color:var(--navy);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased;}
   a{color:inherit;text-decoration:none;}
   ul{list-style:none;}
@@ -1229,7 +1229,7 @@
 
 </div><!-- /siteShell -->
 
-<script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
+
 <script>
   // ---------- Tab navigation ----------
   function goToPage(page){
@@ -1240,7 +1240,7 @@
     if(navBtn) navBtn.classList.add('active');
     const tabsEl = document.getElementById('tabs');
     if(tabsEl) tabsEl.classList.remove('open');
-    if(window.__lenis){window.__lenis.scrollTo(0,{immediate:true});}else{window.scrollTo({top:0,behavior:'smooth'});}
+    window.scrollTo({top:0,behavior:'instant'});
   }
   document.querySelectorAll('[data-page]').forEach(el=>{
     el.addEventListener('click', function(e){
@@ -1270,7 +1270,7 @@
     gate.style.display = 'flex';
     requestAnimationFrame(()=>{ gate.classList.remove('gate-hidden'); });
     shell.classList.remove('shell-visible');
-    if(window.__lenis){window.__lenis.scrollTo(0,{immediate:true});}else{window.scrollTo({top:0, behavior:'instant'});}
+    window.scrollTo({top:0, behavior:'instant'});
   }
   document.getElementById('enterSiteBtn').addEventListener('click', enterSite);
   const navLogoEl = document.getElementById('navLogo');
@@ -1278,24 +1278,17 @@
   const backLinkEl = document.getElementById('backToLandingLink');
   if(backLinkEl) backLinkEl.addEventListener('click', backToLanding);
 
-  // ---------- Smooth momentum scrolling (Lenis) + hero parallax ----------
-  if(window.Lenis){
-    try{
-      const lenis = new Lenis({ lerp: 0.09, anchors: true });
-      window.__lenis = lenis;
-      function rafLoop(t){ lenis.raf(t); requestAnimationFrame(rafLoop); }
-      requestAnimationFrame(rafLoop);
-      lenis.on('scroll', function(l){
-        const home = document.getElementById('home');
-        if(home && home.classList.contains('active')){
-          const hero = document.querySelector('.hero');
-          const heroInner = document.querySelector('.hero-inner');
-          if(hero) hero.style.setProperty('--py', (l.scroll * 0.22) + 'px');
-          if(heroInner) heroInner.style.transform = 'translateY(' + (l.scroll * 0.07) + 'px)';
-        }
-      });
-    }catch(e){ /* Lenis unavailable — native scrolling continues */ }
-  }
+  // ---------- Native scrolling + hero parallax ----------
+  window.addEventListener('scroll', function(){
+    const home = document.getElementById('home');
+    if(home && home.classList.contains('active')){
+      const y = window.scrollY;
+      const hero = document.querySelector('.hero');
+      const heroInner = document.querySelector('.hero-inner');
+      if(hero) hero.style.setProperty('--py', (y * 0.22) + 'px');
+      if(heroInner) heroInner.style.transform = 'translateY(' + (y * 0.07) + 'px)';
+    }
+  }, { passive: true });
 
   // ---------- Forms → CMS backend ----------
   async function postJSON(url, payload){

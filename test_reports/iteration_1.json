@@ -1,0 +1,55 @@
+{
+  "summary": "Tested scroll bug fix (Lenis removal) and new CSV export feature in CMS. All 5 requested test scenarios passed. Note: had to restart frontend supervisor once so that public/index.html changes were picked up (stale served HTML still contained Lenis script until restart).",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "Workshop date input has min=2026-09-02 (hardcoded/dynamic future date) — ensure this is intentional; tests must pick a date >= min.",
+    "Landing gate CTA button 'Enter The Academy' - the workshop reserve button lives on the Apply page, not Programs page (as originally documented). Not a bug, just a doc note."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A (frontend-only run)", "frontend": "100%"},
+  "test_credentials": "CMS admin password: walkthetalk",
+  "seed_data_creation": "Created 1 application (QA Test Scroll / qa+scroll@example.com) and 1 workshop booking (QA Workshop / qa+ws@example.com, date 2026-10-15) via UI",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Frontend served from React dev server; public/index.html changes require `sudo supervisorctl restart frontend` to be picked up in served HTML. Workshop date min is dynamic — pick a date at least ~1 month in the future.",
+  "detailed_results": {
+    "scroll_fix": {
+      "window.Lenis defined": false,
+      "window.__lenis defined": false,
+      "native scroll (scrollBy 0->800)": "immediate (0 -> 800)",
+      "hero parallax --py after scroll": "176px",
+      "lenis console errors": "none"
+    },
+    "apply_form": {
+      "POST /api/applications status": 200,
+      "response": {"status": "success", "emails_sent": 1},
+      "success message visible": true
+    },
+    "workshop_form": {
+      "POST /api/workshop-bookings status": 200,
+      "response": {"status": "success", "emails_sent": 1},
+      "success message visible": true
+    },
+    "cms_csv_export": {
+      "applications file": "the-academy-applications-2026-09-02.csv (6 lines: 1 header + 5 rows)",
+      "applications header": "Name,Email,Phone,Interested In,Currently,Submitted (UTC)",
+      "bookings file": "the-academy-workshop-bookings-2026-09-02.csv (4 lines: 1 header + 3 rows)",
+      "bookings header": "Name,Email,Phone,Workshop,Date,Booked (UTC)",
+      "CSV content matches table data": true,
+      "BOM prefix for Excel": "yes (\\ufeff)"
+    },
+    "cms_dashboard": {
+      "login with 'walkthetalk'": "success",
+      "applications count": 5,
+      "bookings count": 3,
+      "tab switching": "works"
+    }
+  }
+}

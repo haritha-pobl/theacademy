@@ -26,6 +26,8 @@ Update the site using provided HTML (`the-academy-v3-site (6).html`). Make homep
 - Apply + Workshop booking forms → DB + emails (DONE, tested)
 - CMS dashboard at /admin.html (DONE)
 - Owner notification fallback: added thari0907@gmail.com — verified 202 Accepted (2026-06)
+- Scroll fix: removed Lenis scroll-hijacking, restored native scrolling with passive-listener hero parallax (tested, 2026-06)
+- CSV export: one-click "Download CSV" per tab in CMS dashboard, Excel-friendly BOM (tested, 2026-06)
 
 ## Known Issue (user-side, not code)
 - `theacademyindia.com` has NO MX records (verified via Google DNS + port-25 probe). Mail to haritha@/lathika@ that domain bounces (422 from provider). User reads mail via Google Workspace → needs to add Google MX record at DNS host (nameservers dns1-4.p07.nsone.net, likely Squarespace):
@@ -33,5 +35,4 @@ Update the site using provided HTML (`the-academy-v3-site (6).html`). Make homep
   - Once added (up to a few hours to propagate), re-test — code needs no change since addresses are already in OWNER_EMAILS.
 
 ## Backlog
-- P1: Download CSV/PDF of leads in CMS dashboard
-- P2: WhatsApp alerts on new application/booking
+- P2: WhatsApp alerts on new application/booking — user chose to SKIP for now (no provider account). Alert number saved for later: +91 9940862795 (Twilio account needed)
