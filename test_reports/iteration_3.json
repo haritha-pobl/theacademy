@@ -1,0 +1,23 @@
+{
+  "summary": "Frontend regression + primary mobile-scroll bug fix verified across 4 viewports (390x844, 360x640, 820x1180, 1920x800). Landing gate is fully reachable/clickable on all sizes, no horizontal overflow anywhere, mobile hamburger opens tab menu with all data-testid nav links, floating apply CTA works, apply form submits successfully (POST /api/applications -> 200, success message rendered).",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "Landing gate fix (position:relative + min-height:100dvh) is effective; content fits within viewport at tested phone sizes so scrollY stays 0, but Enter button is fully visible/reachable/clickable — pass criterion met per request notes.",
+    "Apply form success message includes duplicate/hidden 'Your seat is reserved.' element (workshop form success) that stays in DOM but hidden — not a bug, just note."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "n/a (frontend-only)", "frontend": "100%"},
+  "test_credentials": "not needed for this run",
+  "seed_data_creation": "1 application submitted: name='QA Mobile', email=qa@example.com, phone=9999999999 (id f9a89aef-2dab-43ff-9f6d-c674b6ea31ea)",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "All mobile/tablet/desktop landing-gate scroll+reachability tests pass. Enter -> /home/. Mobile menu (data-testid=mobile-menu-button) exposes nav-tab-home, nav-tab-story, nav-tab-programs, nav-apply-button. Floating apply CTA (data-testid=floating-apply-cta) works. Apply form POST /api/applications returns 200 with emails_sent:1. No horizontal overflow on /, /home/, /programs/, /apply/ at 390px width.",
+  "rca of the issue": "Original bug (mobile landing not scrollable) RCA per main agent: #landingGate had position:fixed;inset:0;overflow:hidden trapping content taller than screen. Fix (position:relative + min-height:100dvh + responsive sizing) verified — gate content now fits within viewport at 360/390/820 widths so scroll isn't even needed; Enter button always in viewport and clickable."
+}

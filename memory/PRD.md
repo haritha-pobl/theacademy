@@ -38,6 +38,7 @@ Update the site using provided HTML (`the-academy-v3-site (6).html`). Make homep
 - Multi-page restructure: converted CSS/JS tab navigation to individual pages with real URLs (/, /home/, /why/, /programs/, /apply/); nav = real links with active state; base64 logos extracted to /assets/*.png; shared site.css/site.js. Full regression by testing agent — 100% pass (2026-06)
 - Floating left-edge "Apply Now — Founding Cohort" CTA on all pages except /apply/, links straight to the form page (screenshot-verified, 2026-06)
 - SEO: unique titles + meta descriptions + canonical + Open Graph/Twitter cards per page, generated branded og-card.jpg, admin.html noindex. NOTE: og:url/og:image use the preview domain as base (script: /app/memory/add_seo_cta.py, BASE var) — update BASE and rerun after deploying to the final domain (2026-06)
+- Mobile/tablet fix: landing gate changed from position:fixed/overflow:hidden (unscrollable on phones) to position:relative + min-height:100dvh with responsive gate sizing (logo 112/92/68px) and body overflow-x:hidden. Verified by testing agent at 360/390/820/1920 widths — 100% pass (2026-06)
 
 ## Known Issue (user-side, not code)
 - `theacademyindia.com` has NO MX records (verified via Google DNS + port-25 probe). Mail to haritha@/lathika@ that domain bounces (422 from provider). User reads mail via Google Workspace → needs to add Google MX record at DNS host (nameservers dns1-4.p07.nsone.net, likely Squarespace):
