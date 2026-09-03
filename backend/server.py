@@ -145,6 +145,9 @@ class ApplicationIn(BaseModel):
     email: EmailStr
     interest: str
     profile: str
+    city: str = ""
+    form_type: str = "fullstack"
+    pace: Optional[str] = None
 
 class WorkshopBookingIn(BaseModel):
     name: str
@@ -152,6 +155,7 @@ class WorkshopBookingIn(BaseModel):
     phone: str
     workshop: str
     date: str
+    city: str = ""
 
 # ---------- Public endpoints ----------
 @api_router.get("/health")
@@ -168,17 +172,23 @@ async def create_application(payload: ApplicationIn):
         "email": payload.email.strip(),
         "interest": payload.interest,
         "profile": payload.profile,
+        "city": payload.city.strip(),
+        "form_type": payload.form_type,
+        "pace": payload.pace,
         "created_at": datetime.now(timezone.utc).isoformat(),
     }
     await db.applications.insert_one(doc)
 
     e = escape
+    kind = "Bootcamp" if doc["form_type"] == "bootcamp" else "Full-Stack Program"
     owner_html = _email_shell(
-        '<p style="font-family:Arial,sans-serif;font-size:15px;color:#0F1D2D;margin:0 0 16px;">'
-        '<strong>New application received.</strong></p>'
+        f'<p style="font-family:Arial,sans-serif;font-size:15px;color:#0F1D2D;margin:0 0 16px;">'
+        f'<strong>New {e(kind)} application received.</strong></p>'
         '<table role="presentation">'
         + _row("Name", e(doc["name"])) + _row("Email", e(doc["email"]))
-        + _row("Phone", e(doc["phone"])) + _row("Interested in", e(doc["interest"]))
+        + _row("Phone", e(doc["phone"])) + _row("City", e(doc["city"] or "—"))
+        + _row("Applied for", e(doc["interest"]))
+        + (_row("Preferred pace", e(doc["pace"])) if doc["pace"] else "")
         + _row("Currently", e(doc["profile"]))
         + _row("Submitted", e(doc["created_at"][:16].replace("T", " ") + " UTC"))
         + '</table>')
@@ -188,13 +198,13 @@ async def create_application(payload: ApplicationIn):
         f'<p style="font-family:Arial,sans-serif;font-size:14px;color:#3E5166;margin:0 0 12px;">'
         f'We have received your application for <strong>{e(doc["interest"])}</strong>. '
         'Every application is reviewed by our admissions team, and we usually respond within '
-        'one working day with next steps and your invite to the next Introductory Workshop.</p>'
+        'one working day with next steps.</p>'
         '<p style="font-family:Arial,sans-serif;font-size:14px;color:#3E5166;margin:0;">'
         'Your next chapter starts here.</p>')
 
     emails_sent = 0
     for owner in OWNER_EMAILS:
-        if await send_email(to=owner, subject=f"New application — {doc['name']}", html=owner_html):
+        if await send_email(to=owner, subject=f"New {kind.lower()} application — {doc['name']}", html=owner_html):
             emails_sent += 1
     if await send_email(to=doc["email"], subject="We've received your application — The Academy",
                         html=applicant_html):
@@ -212,36 +222,52 @@ async def create_workshop_booking(payload: WorkshopBookingIn):
         "phone": payload.phone.strip(),
         "workshop": payload.workshop,
         "date": payload.date,
+        "city": payload.city.strip(),
         "created_at": datetime.now(timezone.utc).isoformat(),
     }
     await db.workshop_bookings.insert_one(doc)
 
     e = escape
+    is_call = "1:1" in doc["workshop"]
+    heading = "New 1:1 call request." if is_call else "New workshop seat reserved."
     owner_html = _email_shell(
-        '<p style="font-family:Arial,sans-serif;font-size:15px;color:#0F1D2D;margin:0 0 16px;">'
-        '<strong>New workshop seat reserved.</strong></p>'
+        f'<p style="font-family:Arial,sans-serif;font-size:15px;color:#0F1D2D;margin:0 0 16px;">'
+        f'<strong>{e(heading)}</strong></p>'
         '<table role="presentation">'
         + _row("Name", e(doc["name"])) + _row("Email", e(doc["email"]))
-        + _row("Phone", e(doc["phone"])) + _row("Workshop", e(doc["workshop"]))
-        + _row("Date", e(doc["date"]))
+        + _row("Phone", e(doc["phone"])) + _row("City", e(doc["city"] or "—"))
+        + _row("Type" if is_call else "Workshop", e(doc["workshop"]))
+        + _row("Preferred date" if is_call else "Date", e(doc["date"]))
         + _row("Submitted", e(doc["created_at"][:16].replace("T", " ") + " UTC"))
         + '</table>')
-    guest_html = _email_shell(
-        f'<p style="font-family:Arial,sans-serif;font-size:15px;color:#0F1D2D;margin:0 0 12px;">'
-        f'Hi <strong>{e(doc["name"])}</strong>, your seat is reserved.</p>'
-        f'<p style="font-family:Arial,sans-serif;font-size:14px;color:#3E5166;margin:0 0 12px;">'
-        f'Workshop: <strong>{e(doc["workshop"])}</strong><br>Date: <strong>{e(doc["date"])}</strong><br>'
-        'Venue: The Academy — The Institute &amp; Co-working Spaces, CovaiCare Tower, Ganapathi, Coimbatore</p>'
-        '<p style="font-family:Arial,sans-serif;font-size:14px;color:#3E5166;margin:0;">'
-        'We will share the exact session timing closer to the date. See you there.</p>')
+    if is_call:
+        guest_html = _email_shell(
+            f'<p style="font-family:Arial,sans-serif;font-size:15px;color:#0F1D2D;margin:0 0 12px;">'
+            f'Hi <strong>{e(doc["name"])}</strong>, your 1:1 call is booked.</p>'
+            f'<p style="font-family:Arial,sans-serif;font-size:14px;color:#3E5166;margin:0 0 12px;">'
+            f'Preferred date: <strong>{e(doc["date"])}</strong></p>'
+            '<p style="font-family:Arial,sans-serif;font-size:14px;color:#3E5166;margin:0;">'
+            'Our team will call you to confirm the exact time. We&#39;ll understand your goals '
+            'and help you pick the right track — no pressure, no obligation.</p>')
+        guest_subject = "Your 1:1 call is booked — The Academy"
+        owner_subject = f"New 1:1 call request — {doc['name']} ({doc['date']})"
+    else:
+        guest_html = _email_shell(
+            f'<p style="font-family:Arial,sans-serif;font-size:15px;color:#0F1D2D;margin:0 0 12px;">'
+            f'Hi <strong>{e(doc["name"])}</strong>, your seat is reserved.</p>'
+            f'<p style="font-family:Arial,sans-serif;font-size:14px;color:#3E5166;margin:0 0 12px;">'
+            f'Workshop: <strong>{e(doc["workshop"])}</strong><br>Date: <strong>{e(doc["date"])}</strong><br>'
+            'Venue: The Academy — The Institute &amp; Co-working Spaces, CovaiCare Tower, Ganapathi, Coimbatore</p>'
+            '<p style="font-family:Arial,sans-serif;font-size:14px;color:#3E5166;margin:0;">'
+            'We will share the exact session timing closer to the date. See you there.</p>')
+        guest_subject = "Your workshop seat is reserved — The Academy"
+        owner_subject = f"New workshop booking — {doc['name']} ({doc['date']})"
 
     emails_sent = 0
     for owner in OWNER_EMAILS:
-        if await send_email(to=owner, subject=f"New workshop booking — {doc['name']} ({doc['date']})",
-                            html=owner_html):
+        if await send_email(to=owner, subject=owner_subject, html=owner_html):
             emails_sent += 1
-    if await send_email(to=doc["email"], subject="Your workshop seat is reserved — The Academy",
-                        html=guest_html):
+    if await send_email(to=doc["email"], subject=guest_subject, html=guest_html):
         emails_sent += 1
 
     return {"status": "success", "id": doc["id"], "emails_sent": emails_sent}

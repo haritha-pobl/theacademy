@@ -35,6 +35,22 @@
     return res.json();
   }
 
+  // ---------- Apply page: form switcher ----------
+  const switchFs = document.getElementById('switchFullstack');
+  const switchBc = document.getElementById('switchBootcamp');
+  if(switchFs && switchBc){
+    function showForm(which){
+      switchFs.classList.toggle('active', which === 'fs');
+      switchBc.classList.toggle('active', which === 'bc');
+      document.getElementById('applyForm').style.display = which === 'fs' ? '' : 'none';
+      document.getElementById('successMsg').classList.remove('show');
+      document.getElementById('bootcampForm').style.display = which === 'bc' ? '' : 'none';
+      document.getElementById('bootcampSuccess').classList.remove('show');
+    }
+    switchFs.addEventListener('click', function(){ showForm('fs'); });
+    switchBc.addEventListener('click', function(){ showForm('bc'); });
+  }
+
   const applyFormEl = document.getElementById('applyForm');
   if(applyFormEl){
     applyFormEl.addEventListener('submit', async function(e){
@@ -47,7 +63,8 @@
       try{
         await postJSON('/api/applications', {
           name: fd.get('name'), phone: fd.get('phone'), email: fd.get('email'),
-          interest: fd.get('interest'), profile: fd.get('profile')
+          city: fd.get('city'), interest: fd.get('interest'), profile: fd.get('profile'),
+          pace: fd.get('pace'), form_type: 'fullstack'
         });
         this.style.display = 'none';
         document.getElementById('successMsg').classList.add('show');
@@ -59,35 +76,61 @@
     });
   }
 
-  // ---------- Workshop booking ----------
-  const wkModal = document.getElementById('workshopModal');
-  const openWkBtn = document.getElementById('openWorkshopBtn');
-  if(openWkBtn){ openWkBtn.addEventListener('click', function(){ wkModal.classList.add('open'); }); }
-  const closeWkBtn = document.getElementById('closeWorkshopBtn');
-  if(closeWkBtn){ closeWkBtn.addEventListener('click', function(){ wkModal.classList.remove('open'); }); }
-  if(wkModal){ wkModal.addEventListener('click', function(e){ if(e.target === wkModal) wkModal.classList.remove('open'); }); }
-  const wkDateEl = document.getElementById('workshopDate');
-  if(wkDateEl){ wkDateEl.min = new Date().toISOString().split('T')[0]; }
-  const wkFormEl = document.getElementById('workshopForm');
-  if(wkFormEl){
-    wkFormEl.addEventListener('submit', async function(e){
+  const bootcampFormEl = document.getElementById('bootcampForm');
+  if(bootcampFormEl){
+    bootcampFormEl.addEventListener('submit', async function(e){
       e.preventDefault();
-      const btn = document.getElementById('workshopSubmitBtn');
-      const err = document.getElementById('workshopError');
+      const btn = document.getElementById('bootcampSubmitBtn');
+      const err = document.getElementById('bootcampError');
       err.classList.remove('show');
-      btn.disabled = true; btn.textContent = 'Reserving…';
+      btn.disabled = true; btn.textContent = 'Submitting…';
       const fd = new FormData(this);
-      const payload = { name: fd.get('name'), email: fd.get('email'), phone: fd.get('phone'), workshop: fd.get('workshop'), date: fd.get('date') };
+      try{
+        await postJSON('/api/applications', {
+          name: fd.get('name'), phone: fd.get('phone'), email: fd.get('email'),
+          city: fd.get('city'), interest: fd.get('interest'), profile: fd.get('profile'),
+          form_type: 'bootcamp'
+        });
+        this.style.display = 'none';
+        document.getElementById('bootcampSuccess').classList.add('show');
+      }catch(ex){
+        err.textContent = 'Something went wrong sending your application. Please try again.';
+        err.classList.add('show');
+        btn.disabled = false; btn.textContent = 'Apply for the Bootcamp →';
+      }
+    });
+  }
+
+  // ---------- 1:1 call scheduling ----------
+  const callModal = document.getElementById('callModal');
+  const openCallBtn = document.getElementById('openCallBtn');
+  if(openCallBtn){ openCallBtn.addEventListener('click', function(){ callModal.classList.add('open'); }); }
+  const closeCallBtn = document.getElementById('closeCallBtn');
+  if(closeCallBtn){ closeCallBtn.addEventListener('click', function(){ callModal.classList.remove('open'); }); }
+  if(callModal){ callModal.addEventListener('click', function(e){ if(e.target === callModal) callModal.classList.remove('open'); }); }
+  const callDateEl = document.getElementById('callDate');
+  if(callDateEl){ callDateEl.min = new Date().toISOString().split('T')[0]; }
+  const callFormEl = document.getElementById('callForm');
+  if(callFormEl){
+    callFormEl.addEventListener('submit', async function(e){
+      e.preventDefault();
+      const btn = document.getElementById('callSubmitBtn');
+      const err = document.getElementById('callError');
+      err.classList.remove('show');
+      btn.disabled = true; btn.textContent = 'Booking…';
+      const fd = new FormData(this);
+      const payload = { name: fd.get('name'), email: fd.get('email'), phone: fd.get('phone'),
+        city: fd.get('city'), workshop: '1:1 Track-Match Call', date: fd.get('date') };
       try{
         await postJSON('/api/workshop-bookings', payload);
         this.style.display = 'none';
-        document.getElementById('workshopSuccessText').textContent =
-          payload.workshop + ' · ' + payload.date + ' — a confirmation email is on its way to you. Venue: The Academy, CovaiCare Tower, Ganapathi, Coimbatore.';
-        document.getElementById('workshopSuccess').classList.add('show');
+        document.getElementById('callSuccessText').textContent =
+          'Preferred date: ' + payload.date + ' — we will call you to confirm the exact time and help you pick the right track.';
+        document.getElementById('callSuccess').classList.add('show');
       }catch(ex){
-        err.textContent = 'Could not reserve your seat just now. Please try again.';
+        err.textContent = 'Could not book your call just now. Please try again.';
         err.classList.add('show');
-        btn.disabled = false; btn.textContent = 'Confirm My Seat →';
+        btn.disabled = false; btn.textContent = 'Request My Call →';
       }
     });
   }

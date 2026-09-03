@@ -72,14 +72,14 @@
   </div>
   <div class="tabs-bar">
     <button class="tab-btn active" data-tab="applications" data-testid="cms-tab-applications">Applications</button>
-    <button class="tab-btn" data-tab="bookings" data-testid="cms-tab-bookings">Workshop Bookings</button>
+    <button class="tab-btn" data-tab="bookings" data-testid="cms-tab-bookings">Calls & Bookings</button>
     <button class="tab-btn" id="refreshBtn" data-testid="cms-refresh-button" style="margin-left:auto;">↻ Refresh</button>
     <button class="export-btn" id="exportBtn" data-testid="cms-export-csv-button">⬇ Download CSV</button>
   </div>
 
   <div class="panel active" id="panel-applications" data-testid="cms-applications-panel">
     <table>
-      <thead><tr><th>Applicant</th><th>Contact</th><th>Interested In</th><th>Currently</th><th>Submitted</th></tr></thead>
+      <thead><tr><th>Applicant</th><th>Contact</th><th>City</th><th>Applied For</th><th>Pace</th><th>Currently</th><th>Submitted</th></tr></thead>
       <tbody id="appsBody"></tbody>
     </table>
     <div class="empty" id="appsEmpty">No applications yet — they'll appear here the moment someone applies.</div>
@@ -87,7 +87,7 @@
 
   <div class="panel" id="panel-bookings" data-testid="cms-bookings-panel">
     <table>
-      <thead><tr><th>Guest</th><th>Contact</th><th>Workshop</th><th>Date</th><th>Booked</th></tr></thead>
+      <thead><tr><th>Guest</th><th>Contact</th><th>City</th><th>Type</th><th>Date</th><th>Booked</th></tr></thead>
       <tbody id="bookingsBody"></tbody>
     </table>
     <div class="empty" id="bookingsEmpty">No workshop bookings yet.</div>
@@ -122,7 +122,9 @@ async function loadDashboard(){
   $('appsBody').innerHTML = apps.map(a =>
     '<tr data-testid="cms-application-row"><td><strong>' + esc(a.name) + '</strong></td>' +
     '<td>' + esc(a.email) + '<br><span class="muted">' + esc(a.phone) + '</span></td>' +
-    '<td><span class="tag">' + esc(a.interest) + '</span></td>' +
+    '<td>' + esc(a.city || '—') + '</td>' +
+    '<td><span class="tag">' + esc(a.interest) + '</span><br><span class="muted">' + (a.form_type === 'bootcamp' ? 'Bootcamp' : 'Full-Stack') + '</span></td>' +
+    '<td>' + esc(a.pace || '—') + '</td>' +
     '<td>' + esc(a.profile) + '</td><td class="muted">' + fmt(a.created_at) + '</td></tr>'
   ).join('');
   $('appsEmpty').style.display = apps.length ? 'none' : 'block';
@@ -130,6 +132,7 @@ async function loadDashboard(){
   $('bookingsBody').innerHTML = bookings.map(b =>
     '<tr data-testid="cms-booking-row"><td><strong>' + esc(b.name) + '</strong></td>' +
     '<td>' + esc(b.email) + '<br><span class="muted">' + esc(b.phone) + '</span></td>' +
+    '<td>' + esc(b.city || '—') + '</td>' +
     '<td><span class="tag">' + esc(b.workshop) + '</span></td>' +
     '<td><strong>' + esc(b.date) + '</strong></td><td class="muted">' + fmt(b.created_at) + '</td></tr>'
   ).join('');
@@ -165,8 +168,8 @@ $('exportBtn').addEventListener('click', () => {
   const isApps = activeTab === 'applications';
   const rows = isApps ? lastApps : lastBookings;
   const cols = isApps
-    ? [{key:'name',label:'Name'},{key:'email',label:'Email'},{key:'phone',label:'Phone'},{key:'interest',label:'Interested In'},{key:'profile',label:'Currently'},{key:'created_at',label:'Submitted (UTC)'}]
-    : [{key:'name',label:'Name'},{key:'email',label:'Email'},{key:'phone',label:'Phone'},{key:'workshop',label:'Workshop'},{key:'date',label:'Date'},{key:'created_at',label:'Booked (UTC)'}];
+    ? [{key:'name',label:'Name'},{key:'email',label:'Email'},{key:'phone',label:'Phone'},{key:'city',label:'City'},{key:'form_type',label:'Type'},{key:'interest',label:'Applied For'},{key:'pace',label:'Pace'},{key:'profile',label:'Currently'},{key:'created_at',label:'Submitted (UTC)'}]
+    : [{key:'name',label:'Name'},{key:'email',label:'Email'},{key:'phone',label:'Phone'},{key:'city',label:'City'},{key:'workshop',label:'Type'},{key:'date',label:'Date'},{key:'created_at',label:'Booked (UTC)'}];
   const blob = new Blob(['\ufeff' + toCSV(rows, cols)], {type:'text/csv;charset=utf-8;'});
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);

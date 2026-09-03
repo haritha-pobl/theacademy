@@ -1,0 +1,28 @@
+{
+  "summary": "Full E2E validation of new batch: floating CTA, programs bootcamp+pace+coming-soon cards, apply page two-form switcher, full-stack submit with city+pace, bootcamp submit, 1:1 call modal, admin CMS new columns + CSV. Backend pytest 5/5 pass. Frontend flows all pass. One content bug found: home page marquee still contains 'Founding Cohort Now Open' 3× (should be replaced per new wording rule).",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [
+      {"component": "home page marquee", "issue": "Contains 'Founding Cohort Now Open' 3× — requirement says all 'Founding Cohort' wording should be replaced with 'Admissions Now Open / first batch'. Home eyebrow already says 'Admissions Now Open' but marquee strip (lines 66-68 /app/frontend/public/home/index.html) still has the old copy.", "selector": "div.marquee span (x3)", "priority": "MEDIUM"}
+    ],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": ["/app/backend/tests/test_backend.py", "/app/test_reports/pytest/pytest_results.xml"],
+  "action_items": [
+    "Replace 'Founding Cohort Now Open' with 'Admissions Now Open' (or similar new wording) in /app/frontend/public/home/index.html lines 66, 67, 68 (marquee spans). After change, run 'sudo supervisorctl restart frontend' since it's a static file."
+  ],
+  "critical_code_review_comments": [
+    "Backend ApplicationIn defaults form_type='fullstack' and city='' — accepts missing city silently even though frontend marks required. Consider requiring city in the model, or at least not defaulting form_type (frontend always sends it).",
+    "Call modal date input min is set to today from JS — good, but no server-side date validation on WorkshopBookingIn.date field.",
+    "OWNER_EMAILS iteration issues send_email failures silently (returns None) — emails_sent count masks partial failures; acceptable for MVP."
+  ],
+  "updated_files": ["/app/backend/tests/test_backend.py (new)"],
+  "success_rate": {"backend": "100% (5/5)", "frontend": "~95% (1 content bug)"},
+  "test_credentials": "Admin CMS password: walkthetalk",
+  "seed_data_creation": "3 applications + 1 call booking created via playwright (QA prefix, example.com emails); 2 applications + 1 call booking created via pytest.",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "All new batch features verified working: floating CTA 'Apply Now' on /home,/why,/programs; programs page has workshops-coming-soon card, Weekend/Full-Time pace cards, correct bootcamp meta, no 'Format:' text, no 'Founding Cohort' on programs; apply page form switcher toggles between apply-form and bootcamp-form; both submit successfully with city+pace persisted; call modal opens/closes, submits POST /api/workshop-bookings 200 with workshop='1:1 Track-Match Call'; admin CMS shows City/Applied For/Pace/Currently columns for apps and City/Type for bookings; CSV headers include new columns. Pace radio HTML5 required works. Mobile 390px no overflow. Only outstanding item: home marquee still has 'Founding Cohort Now Open' — string replacement fix.",
+  "rca of the issue": "Home marquee lines were not updated when the 'Founding Cohort' → 'Admissions Now Open' wording refresh was applied. Fix: string replace 'Founding Cohort Now Open' → 'Admissions Now Open' in /app/frontend/public/home/index.html marquee spans."
+}

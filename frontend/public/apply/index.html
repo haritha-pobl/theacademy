@@ -3,21 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Apply Now — Founding Cohort | The Academy, Coimbatore</title>
-<meta name="description" content="Applications for The Academy's Founding Cohort are open. Apply in under 3 minutes, reserve a 3-hour workshop seat, and get matched to the right Full-Stack track. Limited seats, rolling review.">
+<title>Apply Now — Full-Stack Programs & Bootcamps | The Academy, Coimbatore</title>
+<meta name="description" content="Admissions are open at The Academy, Coimbatore. Apply to a Full-Stack program (weekend pace over 3 months or full-time in 1 month) or a 7-day bootcamp — or schedule a free 1:1 call and we'll match you to the right track.">
 <link rel="canonical" href="https://web-launch-demo-2.preview.emergentagent.com/apply/">
 <meta name="theme-color" content="#0F1D2D">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="The Academy">
-<meta property="og:title" content="Apply Now — Founding Cohort | The Academy, Coimbatore">
-<meta property="og:description" content="Applications for The Academy's Founding Cohort are open. Apply in under 3 minutes, reserve a 3-hour workshop seat, and get matched to the right Full-Stack track. Limited seats, rolling review.">
+<meta property="og:title" content="Apply Now — Full-Stack Programs & Bootcamps | The Academy, Coimbatore">
+<meta property="og:description" content="Admissions are open at The Academy, Coimbatore. Apply to a Full-Stack program (weekend pace over 3 months or full-time in 1 month) or a 7-day bootcamp — or schedule a free 1:1 call and we'll match you to the right track.">
 <meta property="og:url" content="https://web-launch-demo-2.preview.emergentagent.com/apply/">
 <meta property="og:image" content="https://web-launch-demo-2.preview.emergentagent.com/assets/og-card.jpg">
 <meta property="og:image:width" content="1264">
 <meta property="og:image:height" content="848">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Apply Now — Founding Cohort | The Academy, Coimbatore">
-<meta name="twitter:description" content="Applications for The Academy's Founding Cohort are open. Apply in under 3 minutes, reserve a 3-hour workshop seat, and get matched to the right Full-Stack track. Limited seats, rolling review.">
+<meta name="twitter:title" content="Apply Now — Full-Stack Programs & Bootcamps | The Academy, Coimbatore">
+<meta name="twitter:description" content="Admissions are open at The Academy, Coimbatore. Apply to a Full-Stack program or a 7-day bootcamp — or schedule a free 1:1 call and we'll match you to the right track.">
 <meta name="twitter:image" content="https://web-launch-demo-2.preview.emergentagent.com/assets/og-card.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
@@ -45,7 +45,7 @@
 <section class="final-cta">
   <div class="wrap">
     <h2 class="reveal">Whichever door you walked in through — this is where your next chapter starts.</h2>
-    <p class="reveal">Applications for the Founding Cohort are open now. Limited seats across every track.</p>
+    <p class="reveal">Admissions are open now. Apply to a Full-Stack program or a 7-day bootcamp — limited seats in every batch.</p>
   </div>
 </section>
 
@@ -56,30 +56,41 @@
         <p style="font-size:16px;color:#5b6672;max-width:440px;">Admission is selective — every application is reviewed. Here's exactly what happens after you apply.</p>
         <ul class="step-list">
           <li><div class="step-num">1</div><div><h4>Submit your application</h4><p>Takes under 3 minutes. No essays required at this stage.</p></div></li>
-          <li><div class="step-num">2</div><div><h4>Reserve a workshop or bootcamp seat</h4><p>See how we teach before committing to a signature program.</p></div></li>
-          <li><div class="step-num">3</div><div><h4>Get matched to a track</h4><p>We'll recommend Marketing, HR, or Accounting based on your goals.</p></div></li>
-          <li><div class="step-num">4</div><div><h4>Founding Cohort begins</h4><p>Limited seats. Applications reviewed on a rolling basis.</p></div></li>
+          <li><div class="step-num">2</div><div><h4>Get matched to a track</h4><p>We'll recommend Marketing, HR, Accounting, or AI &amp; Tech based on your goals.</p></div></li>
+          <li><div class="step-num">3</div><div><h4>Your batch begins</h4><p>Weekend pace or full-time — you pick the rhythm that fits your life.</p></div></li>
         </ul>
-        <button type="button" class="btn-gold" id="openWorkshopBtn" data-testid="workshop-booking-open-button" style="margin-top:28px;">Reserve a 3-Hour Workshop Seat →</button>
+        <p style="font-size:13.5px;color:#5b6672;margin-top:18px;max-width:440px;">Bootcamps are optional — you don't need to attend one to join a Full-Stack program.</p>
+
+        <div class="call-card reveal" data-testid="call-card">
+          <h4>Don't know where to start?</h4>
+          <p>Schedule a free 1:1 call with us — we'll understand your goals and match you with the right track. No pressure, no obligation.</p>
+          <button type="button" class="btn-gold" id="openCallBtn" data-testid="call-booking-open-button">Schedule a Free 1:1 Call →</button>
+        </div>
       </div>
 
       <div>
+        <div class="form-switch" role="tablist">
+          <button type="button" class="form-switch-btn active" id="switchFullstack" data-testid="form-switch-fullstack">Full-Stack Program</button>
+          <button type="button" class="form-switch-btn" id="switchBootcamp" data-testid="form-switch-bootcamp">7-Day Bootcamp</button>
+        </div>
+
         <form class="apply-form" id="applyForm" data-testid="apply-form">
           <div class="field-row">
             <div class="field"><label>Full Name</label><input type="text" name="name" data-testid="apply-name-input" required></div>
             <div class="field"><label>Phone Number</label><input type="tel" name="phone" data-testid="apply-phone-input" required></div>
           </div>
-          <div class="field"><label>Email Address</label><input type="email" name="email" data-testid="apply-email-input" required></div>
+          <div class="field-row">
+            <div class="field"><label>Email Address</label><input type="email" name="email" data-testid="apply-email-input" required></div>
+            <div class="field"><label>City</label><input type="text" name="city" data-testid="apply-city-input" required></div>
+          </div>
           <div class="field">
             <label>I'm interested in</label>
             <select name="interest" data-testid="apply-interest-select" required>
-              <option value="">Select an option</option>
+              <option value="">Select a track</option>
               <option>The Full-Stack Marketer</option>
               <option>The Full-Stack HR Professional</option>
               <option>The Full-Stack Accountant</option>
-              <option>The Full-Stack AI & Technology Professional</option>
-              <option>7-Day Discovery Bootcamp</option>
-              <option>A 3-Hour Workshop</option>
+              <option>The Full-Stack AI &amp; Technology Professional</option>
               <option>Not sure yet — help me decide</option>
             </select>
           </div>
@@ -93,6 +104,23 @@
               <option>Founder / Building a Business</option>
             </select>
           </div>
+          <div class="field">
+            <label>Which pace fits your life?</label>
+            <div class="pace-grid">
+              <label class="pace-card">
+                <input type="radio" name="pace" value="Weekend Pace — 3 Months" data-testid="pace-weekend-radio" required>
+                <b>Weekend Pace · 3 Months</b>
+                <span class="pace-tags">Working professionals · College students · Busy parents</span>
+                <p>2.5 hrs a week on weekends + free-to-join practical time during weekdays. Learn without pausing your life.</p>
+              </label>
+              <label class="pace-card">
+                <input type="radio" name="pace" value="Full-Time — 1 Month" data-testid="pace-fulltime-radio">
+                <b>Full-Time · 1 Month</b>
+                <span class="pace-tags">Between jobs · Fresh graduates · Career restarters</span>
+                <p>Finish the Foundation in one focused month, then opt into a Level 2 specialization along with an internship.</p>
+              </label>
+            </div>
+          </div>
           <button type="submit" class="submit-btn" id="applySubmitBtn" data-testid="apply-submit-button">Submit Application →</button>
           <p class="form-error" id="applyError" data-testid="apply-error-message"></p>
           <p class="form-note">Your application goes straight to our admissions team — we usually respond within one working day.</p>
@@ -100,7 +128,44 @@
 
         <div class="success-msg" id="successMsg" data-testid="apply-success-message">
           <h4>You're on the list.</h4>
-          <p>We'll be in touch shortly with next steps and your invite to the next Introductory Workshop.</p>
+          <p>We'll be in touch shortly with next steps for your Full-Stack program.</p>
+        </div>
+
+        <form class="apply-form" id="bootcampForm" data-testid="bootcamp-form" style="display:none;">
+          <div class="field-row">
+            <div class="field"><label>Full Name</label><input type="text" name="name" data-testid="bootcamp-name-input" required></div>
+            <div class="field"><label>Phone Number</label><input type="tel" name="phone" data-testid="bootcamp-phone-input" required></div>
+          </div>
+          <div class="field-row">
+            <div class="field"><label>Email Address</label><input type="email" name="email" data-testid="bootcamp-email-input" required></div>
+            <div class="field"><label>City</label><input type="text" name="city" data-testid="bootcamp-city-input" required></div>
+          </div>
+          <div class="field">
+            <label>Choose your bootcamp</label>
+            <select name="interest" data-testid="bootcamp-topic-select" required>
+              <option value="">Select a bootcamp</option>
+              <option>Practical Cost Analyst — Sep 14–19 (7-Day Bootcamp · 25 Hours)</option>
+              <option>Digital Marketing Foundations — Sep 14–19 (7-Day Bootcamp)</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>I am currently a...</label>
+            <select name="profile" data-testid="bootcamp-profile-select" required>
+              <option value="">Select an option</option>
+              <option>College Student</option>
+              <option>Working Professional</option>
+              <option>Restarting My Career</option>
+              <option>Founder / Building a Business</option>
+            </select>
+          </div>
+          <button type="submit" class="submit-btn" id="bootcampSubmitBtn" data-testid="bootcamp-submit-button">Apply for the Bootcamp →</button>
+          <p class="form-error" id="bootcampError" data-testid="bootcamp-error-message"></p>
+          <p class="form-note">Next batch: Sep 14–19. Seats are limited — we'll confirm yours within one working day.</p>
+        </form>
+
+        <div class="success-msg" id="bootcampSuccess" data-testid="bootcamp-success-message">
+          <h4>You're in the queue.</h4>
+          <p>We've received your bootcamp application for the Sep 14–19 batch. We'll confirm your seat shortly.</p>
         </div>
       </div>
     </div>
@@ -109,37 +174,27 @@
 
 </main>
 
-<div class="wk-modal" id="workshopModal" data-testid="workshop-modal">
+<div class="wk-modal" id="callModal" data-testid="call-modal">
   <div class="wk-card">
-    <button type="button" class="wk-close" id="closeWorkshopBtn" data-testid="workshop-close-button" aria-label="Close">&times;</button>
-    <span class="eyebrow">Try Before You Commit</span>
-    <h3>Book a 3-Hour Workshop Seat</h3>
-    <form class="apply-form" id="workshopForm" data-testid="workshop-form" style="padding:0;border:none;">
-      <div class="field"><label>Full Name</label><input type="text" name="name" data-testid="workshop-name-input" required></div>
+    <button type="button" class="wk-close" id="closeCallBtn" data-testid="call-close-button" aria-label="Close">&times;</button>
+    <span class="eyebrow">We'll Point You in the Right Direction</span>
+    <h3>Schedule a Free 1:1 Call</h3>
+    <form class="apply-form" id="callForm" data-testid="call-form" style="padding:0;border:none;">
+      <div class="field"><label>Full Name</label><input type="text" name="name" data-testid="call-name-input" required></div>
       <div class="field-row">
-        <div class="field"><label>Email Address</label><input type="email" name="email" data-testid="workshop-email-input" required></div>
-        <div class="field"><label>Phone Number</label><input type="tel" name="phone" data-testid="workshop-phone-input" required></div>
+        <div class="field"><label>Email Address</label><input type="email" name="email" data-testid="call-email-input" required></div>
+        <div class="field"><label>Phone Number</label><input type="tel" name="phone" data-testid="call-phone-input" required></div>
       </div>
-      <div class="field">
-        <label>Choose a workshop</label>
-        <select name="workshop" data-testid="workshop-topic-select" required>
-          <option value="">Select a workshop</option>
-          <option>Digital Marketing Foundations &amp; Building a Career as a Marketer</option>
-          <option>Practical Cost Analyst</option>
-          <option>AI Tools for Working Professionals</option>
-          <option>People Operations &amp; Hiring Essentials</option>
-        </select>
+      <div class="field-row">
+        <div class="field"><label>City</label><input type="text" name="city" data-testid="call-city-input" required></div>
+        <div class="field"><label>Preferred date</label><input type="date" name="date" id="callDate" data-testid="call-date-input" required></div>
       </div>
-      <div class="field">
-        <label>Pick a date</label>
-        <input type="date" name="date" id="workshopDate" data-testid="workshop-date-input" required>
-      </div>
-      <button type="submit" class="submit-btn" id="workshopSubmitBtn" data-testid="workshop-submit-button">Confirm My Seat →</button>
-      <p class="form-error" id="workshopError" data-testid="workshop-error-message"></p>
+      <button type="submit" class="submit-btn" id="callSubmitBtn" data-testid="call-submit-button">Request My Call →</button>
+      <p class="form-error" id="callError" data-testid="call-error-message"></p>
     </form>
-    <div class="success-msg" id="workshopSuccess" data-testid="workshop-success-message" style="padding:24px 8px;">
-      <h4>Your seat is reserved.</h4>
-      <p id="workshopSuccessText"></p>
+    <div class="success-msg" id="callSuccess" data-testid="call-success-message" style="padding:24px 8px;">
+      <h4>Your call is booked.</h4>
+      <p id="callSuccessText"></p>
     </div>
   </div>
 </div>
