@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Academy — Your Next Chapter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body class="entered">
+<div id="siteShell">
+<div class="topbar">
+  <div class="topbar-inner">
+    <a id="navLogo" href="/" style="cursor:pointer;display:flex;align-items:center;" title="Back to landing page">
+      <img id="topbarLogo" src="/assets/logo-topbar.png" alt="The Academy">
+    </a>
+    <div class="tabs" id="tabs">
+      <a class="tab-btn" href="/home/" data-nav="home" data-testid="nav-tab-home">Home</a>
+      <a class="tab-btn" href="/why/" data-nav="why" data-testid="nav-tab-story">Why The Academy</a>
+      <a class="tab-btn" href="/programs/" data-nav="programs" data-testid="nav-tab-programs">Programs</a>
+      <a href="/apply/" class="apply-btn" data-nav="apply" data-testid="nav-apply-button">Apply Now</a>
+    </div>
+    <button class="mobile-toggle" id="mobileToggle" data-testid="mobile-menu-button">&#9776;</button>
+  </div>
+</div>
+
+<main id="home" class="page active">
+
+<section class="hero">
+  <div class="wrap hero-inner">
+    <span class="eyebrow">Founding Cohort Now Open</span>
+    <h1 class="kinetic"><span class="line-mask"><span class="line-inner">Every chapter starts somewhere.</span></span><span class="line-mask"><span class="line-inner" style="animation-delay:.16s">We built a place for <span class="accent">yours</span>.</span></span></h1>
+    <p>The Academy trains people from every walk of life — whether you're finding your path, falling behind, restarting, or building something of your own — with practitioner-led, AI-integrated business skills. Backed by POBL. Built for how your life actually works.</p>
+    <p class="sub-tagline">"Not a course. Not a degree. Your MicroMBA — the business education that actually keeps up."</p>
+    <div class="track-pills">
+      <span class="track-pill"><span class="t-icon">📣</span> Marketing</span>
+      <span class="track-pill"><span class="t-icon">🤝</span> People Operations (HR)</span>
+      <span class="track-pill"><span class="t-icon">🧮</span> Accounting</span>
+      <span class="track-pill"><span class="t-icon">🤖</span> AI &amp; Technology</span>
+    </div>
+    <a href="#persona" class="btn-gold">Find Your Chapter →</a>
+  </div>
+</section>
+
+<!-- ================= EDITORIAL MARQUEE ================= -->
+<div class="marquee-band" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Your Next Chapter&ensp;&middot;&ensp;Full-Stack Marketing&ensp;&middot;&ensp;People Operations&ensp;&middot;&ensp;Accounting&ensp;&middot;&ensp;AI &amp; Technology&ensp;&middot;&ensp;Founding Cohort Now Open&ensp;&middot;&ensp;</span>
+    <span>Your Next Chapter&ensp;&middot;&ensp;Full-Stack Marketing&ensp;&middot;&ensp;People Operations&ensp;&middot;&ensp;Accounting&ensp;&middot;&ensp;AI &amp; Technology&ensp;&middot;&ensp;Founding Cohort Now Open&ensp;&middot;&ensp;</span>
+    <span>Your Next Chapter&ensp;&middot;&ensp;Full-Stack Marketing&ensp;&middot;&ensp;People Operations&ensp;&middot;&ensp;Accounting&ensp;&middot;&ensp;AI &amp; Technology&ensp;&middot;&ensp;Founding Cohort Now Open&ensp;&middot;&ensp;</span>
+  </div>
+</div>
+
+<!-- ================= PERSONA SELECTOR (SIGNATURE) ================= -->
+<section class="persona-section" id="persona">
+  <div class="wrap">
+    <div class="persona-head reveal">
+      <span class="eyebrow"><span class="ch-num">01</span>Where Are You Starting From?</span>
+      <h2>One Academy. Four doors in.</h2>
+      <p>Tap where you are today — the story, the format, and the support look a little different for each.</p>
+    </div>
+
+    <div class="persona-grid">
+      <div class="persona-card selected" data-persona="student">
+        <span class="p-icon">🎓</span>
+        <h4>Student, exploring</h4>
+        <p>Still in college, finding your strengths</p>
+      </div>
+      <div class="persona-card" data-persona="professional">
+        <span class="p-icon">💼</span>
+        <h4>Feeling outdated</h4>
+        <p>Working, but the industry's moved faster than you</p>
+      </div>
+      <div class="persona-card" data-persona="restarter">
+        <span class="p-icon">↻</span>
+        <h4>Restarting</h4>
+        <p>Coming back after a break, ready for what's next</p>
+      </div>
+      <div class="persona-card" data-persona="founder">
+        <span class="p-icon">🚀</span>
+        <h4>Building my own</h4>
+        <p>A founder who needs real business fluency</p>
+      </div>
+    </div>
+
+    <div class="persona-message reveal" id="personaMessage">
+      <div class="p-eyebrow">For students, exploring</div>
+      <h3>Get campus-to-corporate ready — before you graduate.</h3>
+      <p>Explore real business functions, build a portfolio, and walk out placement-ready faster than your batchmates — with AI fluency most institutes still aren't teaching.</p>
+    </div>
+  </div>
+</section>
+
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-inner">
+      <img id="footerLogo" src="/assets/logo-gate.png" alt="The Academy" style="filter:brightness(1);">
+      <div class="foot-links">
+        <a href="/home/#persona">Find Your Chapter</a>
+        <a href="/apply/">Apply</a>
+        <span>Backed by POBL</span>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 The Academy</span>
+      <span>Ganapathy, Coimbatore</span>
+    </div>
+  </div>
+</footer>
+
+</div><!-- /siteShell -->
+
+<script src="/assets/site.js"></script>
+</body>
+</html>

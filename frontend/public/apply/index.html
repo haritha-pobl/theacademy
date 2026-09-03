@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apply — The Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body class="entered">
+<div id="siteShell">
+<div class="topbar">
+  <div class="topbar-inner">
+    <a id="navLogo" href="/" style="cursor:pointer;display:flex;align-items:center;" title="Back to landing page">
+      <img id="topbarLogo" src="/assets/logo-topbar.png" alt="The Academy">
+    </a>
+    <div class="tabs" id="tabs">
+      <a class="tab-btn" href="/home/" data-nav="home" data-testid="nav-tab-home">Home</a>
+      <a class="tab-btn" href="/why/" data-nav="why" data-testid="nav-tab-story">Why The Academy</a>
+      <a class="tab-btn" href="/programs/" data-nav="programs" data-testid="nav-tab-programs">Programs</a>
+      <a href="/apply/" class="apply-btn" data-nav="apply" data-testid="nav-apply-button">Apply Now</a>
+    </div>
+    <button class="mobile-toggle" id="mobileToggle" data-testid="mobile-menu-button">&#9776;</button>
+  </div>
+</div>
+
+<main id="apply" class="page active">
+
+<section class="final-cta">
+  <div class="wrap">
+    <h2 class="reveal">Whichever door you walked in through — this is where your next chapter starts.</h2>
+    <p class="reveal">Applications for the Founding Cohort are open now. Limited seats across every track.</p>
+  </div>
+</section>
+
+<section class="tight">
+  <div class="wrap">
+    <div class="apply-wrap">
+      <div>
+        <p style="font-size:16px;color:#5b6672;max-width:440px;">Admission is selective — every application is reviewed. Here's exactly what happens after you apply.</p>
+        <ul class="step-list">
+          <li><div class="step-num">1</div><div><h4>Submit your application</h4><p>Takes under 3 minutes. No essays required at this stage.</p></div></li>
+          <li><div class="step-num">2</div><div><h4>Reserve a workshop or bootcamp seat</h4><p>See how we teach before committing to a signature program.</p></div></li>
+          <li><div class="step-num">3</div><div><h4>Get matched to a track</h4><p>We'll recommend Marketing, HR, or Accounting based on your goals.</p></div></li>
+          <li><div class="step-num">4</div><div><h4>Founding Cohort begins</h4><p>Limited seats. Applications reviewed on a rolling basis.</p></div></li>
+        </ul>
+        <button type="button" class="btn-gold" id="openWorkshopBtn" data-testid="workshop-booking-open-button" style="margin-top:28px;">Reserve a 3-Hour Workshop Seat →</button>
+      </div>
+
+      <div>
+        <form class="apply-form" id="applyForm" data-testid="apply-form">
+          <div class="field-row">
+            <div class="field"><label>Full Name</label><input type="text" name="name" data-testid="apply-name-input" required></div>
+            <div class="field"><label>Phone Number</label><input type="tel" name="phone" data-testid="apply-phone-input" required></div>
+          </div>
+          <div class="field"><label>Email Address</label><input type="email" name="email" data-testid="apply-email-input" required></div>
+          <div class="field">
+            <label>I'm interested in</label>
+            <select name="interest" data-testid="apply-interest-select" required>
+              <option value="">Select an option</option>
+              <option>The Full-Stack Marketer</option>
+              <option>The Full-Stack HR Professional</option>
+              <option>The Full-Stack Accountant</option>
+              <option>The Full-Stack AI & Technology Professional</option>
+              <option>7-Day Discovery Bootcamp</option>
+              <option>A 3-Hour Workshop</option>
+              <option>Not sure yet — help me decide</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>I am currently a...</label>
+            <select name="profile" data-testid="apply-profile-select" required>
+              <option value="">Select an option</option>
+              <option>College Student</option>
+              <option>Working Professional</option>
+              <option>Restarting My Career</option>
+              <option>Founder / Building a Business</option>
+            </select>
+          </div>
+          <button type="submit" class="submit-btn" id="applySubmitBtn" data-testid="apply-submit-button">Submit Application →</button>
+          <p class="form-error" id="applyError" data-testid="apply-error-message"></p>
+          <p class="form-note">Your application goes straight to our admissions team — we usually respond within one working day.</p>
+        </form>
+
+        <div class="success-msg" id="successMsg" data-testid="apply-success-message">
+          <h4>You're on the list.</h4>
+          <p>We'll be in touch shortly with next steps and your invite to the next Introductory Workshop.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<div class="wk-modal" id="workshopModal" data-testid="workshop-modal">
+  <div class="wk-card">
+    <button type="button" class="wk-close" id="closeWorkshopBtn" data-testid="workshop-close-button" aria-label="Close">&times;</button>
+    <span class="eyebrow">Try Before You Commit</span>
+    <h3>Book a 3-Hour Workshop Seat</h3>
+    <form class="apply-form" id="workshopForm" data-testid="workshop-form" style="padding:0;border:none;">
+      <div class="field"><label>Full Name</label><input type="text" name="name" data-testid="workshop-name-input" required></div>
+      <div class="field-row">
+        <div class="field"><label>Email Address</label><input type="email" name="email" data-testid="workshop-email-input" required></div>
+        <div class="field"><label>Phone Number</label><input type="tel" name="phone" data-testid="workshop-phone-input" required></div>
+      </div>
+      <div class="field">
+        <label>Choose a workshop</label>
+        <select name="workshop" data-testid="workshop-topic-select" required>
+          <option value="">Select a workshop</option>
+          <option>Digital Marketing Foundations &amp; Building a Career as a Marketer</option>
+          <option>Practical Cost Analyst</option>
+          <option>AI Tools for Working Professionals</option>
+          <option>People Operations &amp; Hiring Essentials</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Pick a date</label>
+        <input type="date" name="date" id="workshopDate" data-testid="workshop-date-input" required>
+      </div>
+      <button type="submit" class="submit-btn" id="workshopSubmitBtn" data-testid="workshop-submit-button">Confirm My Seat →</button>
+      <p class="form-error" id="workshopError" data-testid="workshop-error-message"></p>
+    </form>
+    <div class="success-msg" id="workshopSuccess" data-testid="workshop-success-message" style="padding:24px 8px;">
+      <h4>Your seat is reserved.</h4>
+      <p id="workshopSuccessText"></p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-inner">
+      <img id="footerLogo" src="/assets/logo-gate.png" alt="The Academy" style="filter:brightness(1);">
+      <div class="foot-links">
+        <a href="/home/#persona">Find Your Chapter</a>
+        <a href="/apply/">Apply</a>
+        <span>Backed by POBL</span>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 The Academy</span>
+      <span>Ganapathy, Coimbatore</span>
+    </div>
+  </div>
+</footer>
+
+</div><!-- /siteShell -->
+
+<script src="/assets/site.js"></script>
+</body>
+</html>

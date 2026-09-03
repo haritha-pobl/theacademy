@@ -1,0 +1,36 @@
+{
+  "summary": "Full frontend regression after site restructure into multi-page URLs (/, /home/, /why/, /programs/, /apply/, /admin.html). All 10 requested test scenarios PASS: landing gate + Enter link → /home/; nav tabs are real <a href> with correct active class on each of the 4 pages; logo → /; all pages load with site.css + logos (no 404s except unrelated cloudflare rum); persona selector on /home/ swaps message text when clicking data-persona cards (verified professional → 'AI changed the game...'); Programs modules expand, level2-toggle-mkt/hr expand with aria-expanded flip, spec tabs (mkt-spec-btn) switch panels, Signature link → /apply/, Accountant card exists with no Level 2; Apply form POST → success 'You\\'re on the list.'; Workshop modal opens, POST → 'Your seat is reserved.'; window.Lenis & __lenis undefined (native scroll); footer links Find Your Chapter → /home/#persona and Apply → /apply/; Admin CMS login with 'walkthetalk' works, applications=6, bookings=4, tab switching works, both CSV downloads produce the-academy-applications-2026-09-03.csv and the-academy-workshop-bookings-2026-09-03.csv. Outcomes NOT in nav (only Home/Why/Programs/Apply Now).",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "Note (not a bug): topbar has fixed/sticky positioning that intercepts pointer events in Playwright when clicking .mkt-spec-btn without force=True — for automated tests use force=True or scroll-margin-top; real users are unaffected because natural cursor click coordinates land on the button.",
+    "public/index.html (landing gate) and per-page files (/home/index.html, /why/index.html, /programs/index.html, /apply/index.html) share nav+footer markup — consider server-side includes or a small build step to DRY the ~40 lines of duplicated topbar/footer across 5 HTML files."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A (frontend-only)", "frontend": "100%"},
+  "test_credentials": "CMS admin password: walkthetalk",
+  "seed_data_creation": "Added 1 application (QA Test / qa@example.com) and 1 workshop booking (QA Workshop / qa+ws@example.com, workshop=Digital Marketing Foundations, date=2026-12-15) via UI on the deployed preview URL.",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Multi-page HTML site served from /app/frontend/public/. URLs require trailing slash (/home/ not /home). Nav active class is applied by /assets/site.js via `.tab-btn[data-nav]` matching document key. Playwright: use force=True when clicking .mkt-spec-btn / level2-toggle-* since sticky topbar can intercept clicks after scroll. window.Lenis is undefined (native scroll retained from iteration_1 fix). Apply/workshop endpoints working; CSV export working; CMS login = walkthetalk.",
+  "detailed_results": {
+    "landing_gate": {"title": "The Academy — Your Next Chapter", "enter_href": "/home/", "logo_loaded": true},
+    "nav_active_per_page": {"/home/": "Home", "/why/": "Why The Academy", "/programs/": "Programs", "/apply/": "Apply Now"},
+    "nav_texts": ["The Academy (logo)", "Home", "Why The Academy", "Programs", "Apply Now"],
+    "outcomes_in_nav": false,
+    "persona_swap": {"initial_starts_with": "For students, exploring...", "after_professional_starts_with": "For professionals, feeling outdated..."},
+    "programs": {"view_modules_button_works": true, "level2_toggle_mkt_aria_expanded_flips": true, "spec_tab_switch_active_panel": "spec-search", "signature_apply_link_href": "/apply/", "accountant_card_hasLevel2": false, "accountant_card_hasFoundation": true},
+    "apply_form_submit_success_msg_start": "You're on the list.",
+    "workshop_submit_success_msg": "Your seat is reserved.",
+    "lenis": {"Lenis": "undefined", "__lenis": "undefined"},
+    "footer": [{"t": "Find Your Chapter", "h": "/home/#persona"}, {"t": "Apply", "h": "/apply/"}],
+    "logo_href": "/",
+    "cms": {"login_password": "walkthetalk (ok)", "applications_count": 6, "bookings_count": 4, "tab_switching": "ok", "csv_applications": "the-academy-applications-2026-09-03.csv", "csv_bookings": "the-academy-workshop-bookings-2026-09-03.csv"}
+  }
+}

@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Programs — The Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body class="entered">
+<div id="siteShell">
+<div class="topbar">
+  <div class="topbar-inner">
+    <a id="navLogo" href="/" style="cursor:pointer;display:flex;align-items:center;" title="Back to landing page">
+      <img id="topbarLogo" src="/assets/logo-topbar.png" alt="The Academy">
+    </a>
+    <div class="tabs" id="tabs">
+      <a class="tab-btn" href="/home/" data-nav="home" data-testid="nav-tab-home">Home</a>
+      <a class="tab-btn" href="/why/" data-nav="why" data-testid="nav-tab-story">Why The Academy</a>
+      <a class="tab-btn" href="/programs/" data-nav="programs" data-testid="nav-tab-programs">Programs</a>
+      <a href="/apply/" class="apply-btn" data-nav="apply" data-testid="nav-apply-button">Apply Now</a>
+    </div>
+    <button class="mobile-toggle" id="mobileToggle" data-testid="mobile-menu-button">&#9776;</button>
+  </div>
+</div>
+
+<main id="programs" class="page active">
+
+<section class="programs-section">
+  <div class="wrap">
+    <div class="prog-head reveal">
+      <span class="eyebrow">Programs</span>
+      <h2>Business fundamentals. One deep specialization.</h2>
+      <p>Every Full-Stack program sits on the same Applied Business Core — so your next skill always builds on what you already earned here.</p>
+    </div>
+
+
+        <div class="section-head">
+          <span class="eyebrow"><span class="ch-num">01</span>Flagship Credential</span>
+          <h2 style="font-size:28px;">The Full-Stack Track</h2>
+          <p>Foundation: 30 hours, spread across 3 months — plus skill workshops you can drop into whenever they run. Then one deep AI-powered specialization. Every program ends in a live project, a portfolio, and direct access to our internship and placement pipeline.</p>
+        </div>
+
+        <!-- FULL STACK MARKETER -->
+        <div class="sig-card">
+          <div class="sig-head">
+            <div>
+              <h3>The Full-Stack Marketer</h3>
+              <div class="sig-sub">Foundation (30 hrs · 3 months) + one AI-powered specialization — Social, Search, or SEO + GMB</div>
+            </div>
+            <span class="sig-badge">Flagship</span>
+          </div>
+          <button class="module-toggle" onclick="toggleModules('mkt')">View modules & curriculum ↓</button>
+          <div class="modules" id="mkt">
+
+            <div class="level-tag">Level 1 — Foundation</div>
+            <div class="module">
+              <h5>Module 1 — Business & AI Foundations</h5>
+              <div class="obj">Objective: Understand how a business runs and how AI tools now sit inside every function.</div>
+              <div class="tools"><span>ChatGPT</span><span>Notion AI</span><span>P&L basics</span></div>
+            </div>
+            <div class="module">
+              <h5>Module 2 — Digital Marketing Core</h5>
+              <div class="obj">Objective: Understand every channel, the buyer journey, and how they connect before specializing in one.</div>
+              <div class="tools"><span>Meta &amp; Google overview</span><span>Funnel mapping</span></div>
+            </div>
+            <div class="module">
+              <h5>Module 3 — Brand, Content & AI Tools Across Every Channel</h5>
+              <div class="obj">Objective: Build positioning and content systems, and get fluent with the AI tools used across all three specializations.</div>
+              <div class="tools"><span>Canva AI</span><span>CapCut</span><span>ChatGPT</span></div>
+            </div>
+            <div class="module">
+              <h5>Module 4 — Foundation Capstone: Marketing Plan</h5>
+              <div class="obj">Objective: Build a full marketing plan for a real or simulated business before choosing your specialization.</div>
+              <div class="tools"><span>Portfolio build</span></div>
+            </div>
+
+            <p class="hook-line">Not sure where to start? This is the part that makes digital marketing make sense — no jargon, no experience needed.</p>
+            <button class="level2-toggle" type="button" onclick="toggleLevel2('mkt', this)" data-testid="level2-toggle-mkt">Level 2 — Choose Your Specialization <span class="chev">▾</span></button>
+            <div class="level2-wrap" id="l2-mkt">
+            <div class="mkt-spec-nav">
+              <button class="mkt-spec-btn active" onclick="toggleSpec('social')" type="button">Social Media Marketing</button>
+              <button class="mkt-spec-btn" onclick="toggleSpec('search')" type="button">Search Engine Marketing</button>
+              <button class="mkt-spec-btn" onclick="toggleSpec('seo')" type="button">SEO + GMB</button>
+            </div>
+
+            <p class="hook-line">Every specialization also covers strategy, automation, and budgeting — including how to use AI tools well within each. Covered once here, applied across every track.</p>
+
+            <div class="mkt-spec-panel active" id="spec-social">
+              <p class="hook-line">Want to build a brand, a business, or your own name online? This teaches you exactly how — including how to use AI content tools without getting flagged by Meta.</p>
+              <div class="module">
+                <h5>Platform Strategy & Content Creation</h5>
+                <div class="obj">Objective: Build a content system for Instagram, Facebook, and LinkedIn — and learn to use AI content tools in a way that doesn't get flagged by Meta.</div>
+                <div class="tools"><span>Canva</span><span>CapCut</span><span>Google AI Studio & more</span></div>
+              </div>
+              <div class="module">
+                <h5>Community Growth & Automation</h5>
+                <div class="obj">Objective: Grow and manage an audience using automated scheduling, captions, and DM handling.</div>
+                <div class="tools"><span>Meta Business Suite</span><span>WhatsApp Business</span><span>ManyChat & more</span></div>
+              </div>
+              <div class="module">
+                <h5>Paid Social & Ad Optimization</h5>
+                <div class="obj">Objective: Plan, launch, and optimize paid social campaigns with smart targeting and creative testing.</div>
+                <div class="tools"><span>Meta Ads</span><span>Meta Advantage+</span></div>
+              </div>
+              <div class="module">
+                <h5>Capstone: Full Social Media Campaign</h5>
+                <div class="obj">Objective: Present a complete organic + paid social campaign with real results to an industry panel.</div>
+                <div class="tools"><span>Portfolio build</span><span>Interview prep</span></div>
+              </div>
+            </div>
+
+            <div class="mkt-spec-panel" id="spec-search">
+              <p class="hook-line">Learn how to get customers to find you on Google — one of the most in-demand, best-paid skills in marketing.</p>
+              <div class="module">
+                <h5>Google Ads Fundamentals & Bidding</h5>
+                <div class="obj">Objective: Set up and structure search campaigns using smart bidding strategies.</div>
+                <div class="tools"><span>Google Ads</span><span>Smart Bidding</span></div>
+              </div>
+              <div class="module">
+                <h5>Campaign Structure & Ad Copywriting</h5>
+                <div class="obj">Objective: Build keyword-mapped campaigns and write high-converting ad copy.</div>
+                <div class="tools"><span>ChatGPT</span><span>Google Ads Editor</span></div>
+              </div>
+              <div class="module">
+                <h5>Analytics & Optimization</h5>
+                <div class="obj">Objective: Read performance data and use dashboards to continuously optimize spend and ROAS.</div>
+                <div class="tools"><span>GA4</span><span>Looker Studio</span></div>
+              </div>
+              <div class="module">
+                <h5>Capstone: Live PPC Campaign</h5>
+                <div class="obj">Objective: Present a complete search campaign with budget, results, and ROAS to an industry panel.</div>
+                <div class="tools"><span>Portfolio build</span><span>Interview prep</span></div>
+              </div>
+            </div>
+
+            <div class="mkt-spec-panel" id="spec-seo">
+              <p class="hook-line">Want your business to show up first when someone nearby searches for what you do? This is how.</p>
+              <div class="module">
+                <h5>Technical & On-Page SEO</h5>
+                <div class="obj">Objective: Audit and optimize a website's technical and on-page SEO for search visibility.</div>
+                <div class="tools"><span>Search Console</span><span>Content tools</span></div>
+              </div>
+              <div class="module">
+                <h5>Local SEO & Google Business Profile</h5>
+                <div class="obj">Objective: Build and optimize a Google Business Profile to rank in local search and maps.</div>
+                <div class="tools"><span>Google Business Profile</span><span>BrightLocal</span></div>
+              </div>
+              <div class="module">
+                <h5>Content & Link Building</h5>
+                <div class="obj">Objective: Plan a content and backlink strategy that builds authority and rankings.</div>
+                <div class="tools"><span>ChatGPT</span><span>Surfer SEO</span></div>
+              </div>
+              <div class="module">
+                <h5>Capstone: Full SEO Audit & GMB Optimization</h5>
+                <div class="obj">Objective: Present a complete SEO audit and local optimization plan to an industry panel.</div>
+                <div class="tools"><span>Portfolio build</span><span>Interview prep</span></div>
+              </div>
+            </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- FULL STACK HR -->
+        <div class="sig-card">
+          <div class="sig-head">
+            <div>
+              <h3>The Full-Stack HR Professional</h3>
+              <div class="sig-sub">Foundation (30 hrs · 3 months) + one advanced certification — Hiring & Onboarding, Performance & Culture, Compliance & Payroll, or People Analytics</div>
+            </div>
+            <span class="sig-badge">Signature</span>
+          </div>
+          <button class="module-toggle" onclick="toggleModules('hr')">View modules & curriculum ↓</button>
+          <div class="modules" id="hr">
+
+            <div class="level-tag">Level 1 — Foundation</div>
+            <div class="module">
+              <h5>Module 1 — Business & People Foundations</h5>
+              <div class="obj">Objective: Understand how people strategy ties directly to business outcomes — including how roles are structured, KPIs are set, and KRAs are designed.</div>
+              <div class="tools"><span>Org design basics</span><span>Roles & KPIs</span><span>KRA design</span><span>ChatGPT</span></div>
+            </div>
+
+            <p class="hook-line">New to HR, or moving in from another function? This is the part that makes people operations make sense — how roles, targets, and expectations actually get set.</p>
+            <button class="level2-toggle" type="button" onclick="toggleLevel2('hr', this)" data-testid="level2-toggle-hr">Level 2 — Choose Your Advanced Certification <span class="chev">▾</span></button>
+            <div class="level2-wrap" id="l2-hr">
+            <div class="mkt-spec-nav">
+              <button class="mkt-spec-btn active" onclick="toggleSpec('hiring', this)" type="button">Hiring & Onboarding</button>
+              <button class="mkt-spec-btn" onclick="toggleSpec('perf', this)" type="button">Performance & Culture</button>
+              <button class="mkt-spec-btn" onclick="toggleSpec('comp', this)" type="button">Compliance & Payroll</button>
+              <button class="mkt-spec-btn" onclick="toggleSpec('peopleanalytics', this)" type="button">People Analytics</button>
+            </div>
+
+            <div class="mkt-spec-panel active" id="spec-hiring">
+              <p class="hook-line">Own the full hiring pipeline — from job description to Day 1.</p>
+              <div class="module">
+                <h5>Sourcing & Screening</h5>
+                <div class="obj">Objective: Source, screen, and shortlist candidates against structured criteria.</div>
+                <div class="tools"><span>ATS tools</span><span>Sourcing platforms</span></div>
+              </div>
+              <div class="module">
+                <h5>Interview Design & Onboarding</h5>
+                <div class="obj">Objective: Design structured interviews and run a smooth Day 1 onboarding experience.</div>
+                <div class="tools"><span>Interview scorecards</span><span>Onboarding checklists</span></div>
+              </div>
+            </div>
+
+            <div class="mkt-spec-panel" id="spec-perf">
+              <p class="hook-line">Build the systems that turn "everyone's busy" into "everyone knows what winning looks like."</p>
+              <div class="module">
+                <h5>Performance Review Frameworks</h5>
+                <div class="obj">Objective: Build OKR/KPI-based performance review systems tied to real business goals.</div>
+                <div class="tools"><span>OKRs</span><span>Review templates</span></div>
+              </div>
+              <div class="module">
+                <h5>Culture & Engagement</h5>
+                <div class="obj">Objective: Design engagement surveys and culture-building initiatives that actually get used.</div>
+                <div class="tools"><span>Survey tools</span><span>Engagement calendars</span></div>
+              </div>
+            </div>
+
+            <div class="mkt-spec-panel" id="spec-comp">
+              <p class="hook-line">The part every HR role needs and most courses skip — compliance and payroll, done right.</p>
+              <div class="module">
+                <h5>Statutory Compliance & POSH</h5>
+                <div class="obj">Objective: Navigate statutory compliance and POSH requirements with confidence.</div>
+                <div class="tools"><span>Compliance checklists</span><span>POSH framework</span></div>
+              </div>
+              <div class="module">
+                <h5>Payroll Management</h5>
+                <div class="obj">Objective: Run payroll processing, reconciliation, and salary structuring end-to-end.</div>
+                <div class="tools"><span>Payroll software</span><span>Salary structuring</span></div>
+              </div>
+            </div>
+
+            <div class="mkt-spec-panel" id="spec-peopleanalytics">
+              <p class="hook-line">Move from gut-feel HR decisions to data-backed ones — the skill that gets HR a seat at the table.</p>
+              <div class="module">
+                <h5>HR Dashboards & Metrics</h5>
+                <div class="obj">Objective: Build dashboards that track hiring, retention, and engagement metrics.</div>
+                <div class="tools"><span>HR dashboards</span><span>Excel / Power BI</span></div>
+              </div>
+              <div class="module">
+                <h5>Attrition & Predictive People Analytics</h5>
+                <div class="obj">Objective: Use data and AI copilots to predict attrition and inform retention strategy.</div>
+                <div class="tools"><span>Attrition modelling</span><span>AI copilots</span></div>
+              </div>
+            </div>
+
+            <div class="module" style="margin-top:12px;">
+              <h5>Capstone — Build an HR Playbook</h5>
+              <div class="obj">Objective: Present a complete HR system for a real or simulated company, built around your chosen certification.</div>
+              <div class="tools"><span>Portfolio build</span><span>Interview prep</span></div>
+            </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- FULL STACK ACCOUNTANT -->
+        <div class="sig-card">
+          <div class="sig-head">
+            <div>
+              <h3>The Full-Stack Accountant</h3>
+              <div class="sig-sub">Foundation (30 hrs · 3 months) — Tally, Financial Analysis, Bookkeeping & Compliance</div>
+            </div>
+            <span class="sig-badge">Signature</span>
+          </div>
+          <button class="module-toggle" onclick="toggleModules('acc')">View modules & curriculum ↓</button>
+          <div class="modules" id="acc">
+
+            <div class="level-tag">Level 1 — Foundation</div>
+            <div class="module">
+              <h5>Module 1 — Business & Finance Foundations</h5>
+              <div class="obj">Objective: Read and build a P&L, balance sheet, and cash flow statement.</div>
+              <div class="tools"><span>Excel</span><span>Tally</span></div>
+            </div>
+
+            <p class="hook-line">Numbers-shy? This is the module that removes the fear — plain-English finance, no jargon.</p>
+            <div class="module">
+              <h5>Module 2 — Bookkeeping & Compliance</h5>
+              <div class="obj">Objective: Manage GST, TDS, and day-to-day books accurately and independently in Tally and Zoho Books.</div>
+              <div class="tools"><span>Tally</span><span>Zoho Books</span><span>GST portal</span></div>
+            </div>
+            <div class="module">
+              <h5>Module 3 — Financial Planning & Budgeting</h5>
+              <div class="obj">Objective: Build budgets and cash flow forecasts for a real business.</div>
+              <div class="tools"><span>Excel modelling</span><span>Forecasting tools</span></div>
+            </div>
+            <div class="module">
+              <h5>Module 4 — AI-Assisted Financial Analysis</h5>
+              <div class="obj">Objective: Use AI copilots to analyze Tally and Zoho Books statements and flag anomalies faster.</div>
+              <div class="tools"><span>Tally</span><span>Zoho Books</span><span>AI spreadsheet copilots</span></div>
+            </div>
+            <div class="module">
+              <h5>Module 5 — Capstone: Full Financial Audit</h5>
+              <div class="obj">Objective: Present a full financial health review, built from Tally and Zoho Books records, for a real or simulated business.</div>
+              <div class="tools"><span>Portfolio build</span><span>Interview prep</span></div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- FULL STACK AI & TECHNOLOGY -->
+        <div class="sig-card">
+          <div class="sig-head">
+            <div>
+              <h3>The Full-Stack AI & Technology Professional</h3>
+              <div class="sig-sub">Foundation (30 hrs · 3 months) + one AI-powered specialization — Data Analytics, Data Science, AI & Machine Learning, or Generative AI & LLM Engineering</div>
+            </div>
+            <span class="sig-badge">Signature</span>
+          </div>
+          <button class="module-toggle" onclick="toggleModules('tech')">View modules & curriculum ↓</button>
+          <div class="modules" id="tech">
+
+            <div class="level-tag">Level 1 — Foundation</div>
+            <div class="module">
+              <h5>Module 1 — Business & AI Foundations</h5>
+              <div class="obj">Objective: Understand how data and AI now sit inside every business function, before going deep in one.</div>
+              <div class="tools"><span>ChatGPT</span><span>Business context</span></div>
+            </div>
+            <div class="module">
+              <h5>Module 2 — Data & Analytics Core</h5>
+              <div class="obj">Objective: Get fluent in the spreadsheets, queries, and dashboards every data role runs on.</div>
+              <div class="tools"><span>Excel</span><span>SQL</span><span>Power BI / Tableau overview</span></div>
+            </div>
+            <div class="module">
+              <h5>Module 3 — Programming & AI Tools Foundations</h5>
+              <div class="obj">Objective: Learn Python basics and the core AI/ML concepts used across every specialization.</div>
+              <div class="tools"><span>Python</span><span>Prompt engineering</span></div>
+            </div>
+            <div class="module">
+              <h5>Module 4 — Foundation Capstone: Data & AI Project</h5>
+              <div class="obj">Objective: Build a small end-to-end data project before choosing your specialization.</div>
+              <div class="tools"><span>Portfolio build</span></div>
+            </div>
+
+            <p class="hook-line">New to tech? This is the part that makes data and AI make sense — no coding background needed to start.</p>
+            <button class="level2-toggle" type="button" onclick="toggleLevel2('tech', this)" data-testid="level2-toggle-tech">Level 2 — Choose Your Specialization <span class="chev">▾</span></button>
+            <div class="level2-wrap" id="l2-tech">
+            <div class="mkt-spec-nav">
+              <button class="mkt-spec-btn active" onclick="toggleSpec('dataanalytics', this)" type="button">Data Analytics</button>
+              <button class="mkt-spec-btn" onclick="toggleSpec('datascience', this)" type="button">Data Science</button>
+              <button class="mkt-spec-btn" onclick="toggleSpec('aiml', this)" type="button">AI & Machine Learning</button>
+              <button class="mkt-spec-btn" onclick="toggleSpec('genai', this)" type="button">Generative AI & LLM Engineering</button>
+            </div>
+
+            <p class="hook-line">Every specialization also covers real-time projects and placement preparation — covered once here, applied across every track.</p>
+
+            <div class="mkt-spec-panel active" id="spec-dataanalytics">
+              <p class="hook-line">Turn raw numbers into decisions businesses actually use — one of the fastest entry points into a data career.</p>
+              <div class="module">
+                <h5>Advanced Excel, SQL & Dashboards</h5>
+                <div class="obj">Objective: Query, clean, and structure data at a professional standard.</div>
+                <div class="tools"><span>Advanced Excel</span><span>SQL for Analytics</span></div>
+              </div>
+              <div class="module">
+                <h5>Business & Predictive Analytics</h5>
+                <div class="obj">Objective: Apply Python and statistics to spot trends and predict outcomes.</div>
+                <div class="tools"><span>Python</span><span>Statistics</span></div>
+              </div>
+              <div class="module">
+                <h5>Visualization & Reporting</h5>
+                <div class="obj">Objective: Build dashboards and reports business teams actually use to decide.</div>
+                <div class="tools"><span>Power BI</span><span>Tableau</span></div>
+              </div>
+              <div class="module">
+                <h5>Capstone: Real-Time Analytics Project</h5>
+                <div class="obj">Objective: Present a complete analytics project with real business recommendations to an industry panel.</div>
+                <div class="tools"><span>Portfolio build</span><span>Placement prep</span></div>
+              </div>
+            </div>
+
+            <div class="mkt-spec-panel" id="spec-datascience">
+              <p class="hook-line">Go from reading data to building the models that explain it.</p>
+              <div class="module">
+                <h5>Programming & Data Foundations</h5>
+                <div class="obj">Objective: Get fluent in Python, SQL, and the math and statistics data science runs on.</div>
+                <div class="tools"><span>Python</span><span>NumPy</span><span>Pandas</span></div>
+              </div>
+              <div class="module">
+                <h5>Exploratory Data Analysis & Visualization</h5>
+                <div class="obj">Objective: Explore, clean, and visualize messy real-world datasets before modelling.</div>
+                <div class="tools"><span>EDA</span><span>Data visualization</span></div>
+              </div>
+              <div class="module">
+                <h5>Machine Learning & Deep Learning</h5>
+                <div class="obj">Objective: Build and evaluate ML and deep learning models on real problems.</div>
+                <div class="tools"><span>Machine Learning</span><span>Deep Learning</span></div>
+              </div>
+              <div class="module">
+                <h5>Capstone: End-to-End Data Science Project</h5>
+                <div class="obj">Objective: Present a complete data science project — from raw data to model to insight — to an industry panel.</div>
+                <div class="tools"><span>Portfolio build</span><span>Placement prep</span></div>
+              </div>
+            </div>
+
+            <div class="mkt-spec-panel" id="spec-aiml">
+              <p class="hook-line">Build and deploy the models companies are hiring for right now.</p>
+              <div class="module">
+                <h5>ML & Deep Learning Foundations</h5>
+                <div class="obj">Objective: Apply statistics, probability, and Python to build machine learning and deep learning models.</div>
+                <div class="tools"><span>Python for AI</span><span>Statistics & Probability</span></div>
+              </div>
+              <div class="module">
+                <h5>Specialized AI: NLP & Computer Vision</h5>
+                <div class="obj">Objective: Build models that understand language and images.</div>
+                <div class="tools"><span>NLP</span><span>Computer Vision</span></div>
+              </div>
+              <div class="module">
+                <h5>Deployment & MLOps</h5>
+                <div class="obj">Objective: Take a model from notebook to production using industry-standard frameworks.</div>
+                <div class="tools"><span>TensorFlow</span><span>PyTorch</span><span>MLOps</span></div>
+              </div>
+              <div class="module">
+                <h5>Capstone: Industry AI Project</h5>
+                <div class="obj">Objective: Present a deployed AI project to an industry panel.</div>
+                <div class="tools"><span>Portfolio build</span><span>Interview prep</span></div>
+              </div>
+            </div>
+
+            <div class="mkt-spec-panel" id="spec-genai">
+              <p class="hook-line">The newest, highest-demand skill in tech — build with LLMs and AI agents, not just use them.</p>
+              <div class="module">
+                <h5>Prompt Engineering & LLM Foundations</h5>
+                <div class="obj">Objective: Understand how LLMs work and engineer prompts that reliably get results.</div>
+                <div class="tools"><span>Prompt engineering</span><span>OpenAI APIs</span></div>
+              </div>
+              <div class="module">
+                <h5>RAG & Vector Databases</h5>
+                <div class="obj">Objective: Build retrieval-augmented systems that ground LLMs in real business data.</div>
+                <div class="tools"><span>LangChain</span><span>RAG</span><span>Vector databases</span></div>
+              </div>
+              <div class="module">
+                <h5>AI Agents & Enterprise Applications</h5>
+                <div class="obj">Objective: Build multi-step AI agents for real enterprise use cases.</div>
+                <div class="tools"><span>AI agents</span><span>CrewAI & AutoGen</span></div>
+              </div>
+              <div class="module">
+                <h5>Capstone: Enterprise GenAI Project</h5>
+                <div class="obj">Objective: Present a working GenAI application to an industry panel.</div>
+                <div class="tools"><span>Portfolio build</span><span>Interview prep</span></div>
+              </div>
+            </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="boot-section">
+          <div class="section-head">
+            <span class="eyebrow"><span class="ch-num">02</span>Try Before You Commit</span>
+            <h2 style="font-size:28px;">Bootcamp Topics</h2>
+            <p>Low-commitment, high-signal sessions with outside experts — a taste of what The Academy teaches, before you apply to a full program. New cohorts start the first week of every month.</p>
+          </div>
+
+          <div class="boot-grid">
+            <div class="boot-card">
+              <span class="boot-tag">Bootcamp · 25 Hours</span>
+              <h4>Practical Cost Analyst</h4>
+              <div class="boot-trainer">Led by a Practising Cost Accountant</div>
+              <p style="font-size:14px;color:#5b6672;">Don't just learn accounting — learn how businesses actually work. A hands-on programme on how a cost analyst enters a business, verifies its records, and helps management control cost.</p>
+              <ul>
+                <li>Understand how a business runs, end to end</li>
+                <li>Verify documents, trace transactions & spot control gaps</li>
+                <li>Build a real cost sheet from live business data</li>
+                <li>Present a management report to a review panel</li>
+              </ul>
+              <div class="boot-meta">
+                <span>Format: <b>Weekend, Theory + Workshop</b></span>
+                <span>Next cohorts: <b>Sep · Oct · Nov 2026</b></span>
+              </div>
+            </div>
+
+            <div class="boot-card">
+              <span class="boot-tag">Bootcamp</span>
+              <h4>Digital Marketing Foundations & Building a Career as a Marketer</h4>
+              <div class="boot-trainer">Led by an Expert Marketing Strategist</div>
+              <p style="font-size:14px;color:#5b6672;">A grounding in what digital marketing actually covers, how AI now fits into a marketer's everyday work, and what it takes to land your first role in the field.</p>
+              <ul>
+                <li>What digital marketing covers — channels, roles & career paths</li>
+                <li>How AI tools fit into a marketer's daily work</li>
+                <li>Build a real campaign brief for your portfolio</li>
+                <li>What it takes to land your first marketing role</li>
+              </ul>
+              <div class="boot-meta">
+                <span>Format: <b>Single-day workshop</b></span>
+                <span>Next cohorts: <b>Sep · Oct · Nov 2026</b></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="apply-inline">
+          <p>Founding Cohort seats are limited across all four tracks.</p>
+          <a href="/apply/" class="btn-gold">Apply to a Signature Program →</a>
+        </div>
+
+        <div class="section-head" style="margin-top:70px;">
+          <span class="eyebrow"><span class="ch-num">03</span>Beyond the Classroom</span>
+          <h2 style="font-size:26px;">What happens after you finish.</h2>
+        </div>
+        <div class="path-grid">
+          <div class="path-card"><div class="step">Step 1</div><h4>Live Projects</h4><p>Work on real briefs from real businesses inside POBL's network — not simulated case studies.</p></div>
+          <div class="path-card"><div class="step">Step 2</div><h4>Internships</h4><p>Top performers move directly into internship placements with our partner companies.</p></div>
+          <div class="path-card"><div class="step">Step 3</div><h4>Job & Founder Pathways</h4><p>Get matched to hiring partners — or, if you're building your own venture, a direct line into POBL Launchpad.</p></div>
+        </div>
+  </div>
+</section>
+
+<!-- ================= BUILT FOR REAL LIFE ================= -->
+<section class="real-life">
+  <div class="wrap real-life-inner">
+    <div class="reveal">
+      <span class="eyebrow"><span class="ch-num">04</span>A Campus, Not Just a Classroom</span>
+      <h2>Built so "I can't make it work" stops being the reason you don't start.</h2>
+      <p>The Academy is a full campus — classrooms, mentorship spaces, and a childcare floor — because we built this to work for real, ambitious lives, not around them.</p>
+      <p>It's a small, practical detail we don't lead with. But for the women it matters to, it's often the difference between applying and not.</p>
+    </div>
+    <div class="real-life-card reveal">
+      <span class="quote-mark">"</span>
+      <p>I could focus completely because everything I needed was on-site. That's not something I expected from a business program.</p>
+      <div class="who">— Founding Cohort Applicant</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DIFFERENTIATION ================= -->
+<section class="diff-section">
+  <div class="wrap">
+    <span class="eyebrow">How We're Different</span>
+    <h2 style="font-size:clamp(26px,3.4vw,34px);margin-top:14px;max-width:600px;">We looked at what already exists. Here's the gap.</h2>
+    <div class="diff-grid">
+      <div class="diff-card diff-no reveal">
+        <h4>What Most Programs Offer</h4>
+        <ul>
+          <li>Job-matching, with light or optional upskilling</li>
+          <li>Generic, gender-neutral training with no real logistics support</li>
+          <li>2023-era playbooks with AI bolted on at the end</li>
+          <li>A single audience — usually just career-break women, or just students</li>
+        </ul>
+      </div>
+      <div class="diff-card diff-yes reveal">
+        <h4>The Academy</h4>
+        <ul>
+          <li>Real, applied skill-building with a capstone and portfolio</li>
+          <li>A campus built around how women's lives actually run</li>
+          <li>AI integrated into every module, from week one</li>
+          <li>One brand, four entry points — student to founder</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-inner">
+      <img id="footerLogo" src="/assets/logo-gate.png" alt="The Academy" style="filter:brightness(1);">
+      <div class="foot-links">
+        <a href="/home/#persona">Find Your Chapter</a>
+        <a href="/apply/">Apply</a>
+        <span>Backed by POBL</span>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 The Academy</span>
+      <span>Ganapathy, Coimbatore</span>
+    </div>
+  </div>
+</footer>
+
+</div><!-- /siteShell -->
+
+<script src="/assets/site.js"></script>
+</body>
+</html>

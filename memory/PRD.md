@@ -4,7 +4,13 @@
 Update the site using provided HTML (`the-academy-v3-site (6).html`). Make homepage copy inclusive (not "trains women" only). Connect forms to a CMS backend. Add Workshop Booking (date picker + confirmation) and Apply Form that saves applications and sends instant email notifications. Awwwards-level motion/UI.
 
 ## Architecture
-- Frontend: static HTML/CSS/JS served from `/app/frontend/public/index.html` (bypasses React), admin CMS at `/admin.html`
+- Frontend: static multi-page HTML site served from `/app/frontend/public/`:
+  - `/` = landing gate page (Enter → /home/)
+  - `/home/`, `/why/`, `/programs/`, `/apply/` = individual pages with real URLs (trailing slash required)
+  - `/outcomes/` exists but is intentionally NOT in nav
+  - `/admin.html` = CMS dashboard
+  - Shared assets: `/assets/site.css`, `/assets/site.js`, `/assets/logo-*.png`
+  - Backup of old single-page version: `/app/memory/index-singlepage-backup.html`; splitter script: `/app/memory/split_site.py`
 - Backend: FastAPI (`/app/backend/server.py`) + MongoDB
 - Email: Emergent Email Integration (Resend-backed) via `EMERGENT_EMAIL_KEY`
 
@@ -29,6 +35,7 @@ Update the site using provided HTML (`the-academy-v3-site (6).html`). Make homep
 - Scroll fix: removed Lenis scroll-hijacking, restored native scrolling with passive-listener hero parallax (tested, 2026-06)
 - CSV export: one-click "Download CSV" per tab in CMS dashboard, Excel-friendly BOM (tested, 2026-06)
 - Nav cleanup: removed Outcomes & Landing tabs from top nav; Signature badge right-aligned on all course cards; Level 2 sections now collapsed by default with animated expand toggle (mkt/hr/tech); Full-Stack Accountant restructured — all 5 modules under Foundation, no Level 2 (screenshot-verified, 2026-06)
+- Multi-page restructure: converted CSS/JS tab navigation to individual pages with real URLs (/, /home/, /why/, /programs/, /apply/); nav = real links with active state; base64 logos extracted to /assets/*.png; shared site.css/site.js. Full regression by testing agent — 100% pass (2026-06)
 
 ## Known Issue (user-side, not code)
 - `theacademyindia.com` has NO MX records (verified via Google DNS + port-25 probe). Mail to haritha@/lathika@ that domain bounces (422 from provider). User reads mail via Google Workspace → needs to add Google MX record at DNS host (nameservers dns1-4.p07.nsone.net, likely Squarespace):
