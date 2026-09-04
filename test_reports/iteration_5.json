@@ -1,0 +1,24 @@
+{
+  "summary": "Iteration 5 focused on the second-report mobile scroll hardening (CSS-only shell reveal, no-JS safe reveal, ?v=3 asset cache bust, body overflow-x:clip) plus regression sweep. All primary acceptance criteria PASS. Found and fixed a minor pre-existing horizontal overflow on /apply/ at all mobile+tablet widths (hidden pace radios were positioned absolutely with default input width ~390px, escaping their containers). After fix, no page has horizontal overflow at 360/390/820/1920. Vertical scroll works on /home/, /programs/, /apply/ across all mobile viewports. No-JS load of /home/ renders full hero + sections + footer, is scrollable, and .reveal elements are visible by default (only hidden when html.js is set). Assets served with ?v=3. Regression: nav across pages, floating CTA on /home/ → /apply/, both apply forms (Full-Stack + Bootcamp) submit 200, 1:1 call modal submit 200, admin login (walkthetalk) lists 14 apps + 8 bookings with new columns.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": ["/app/backend/tests/test_backend.py", "/app/test_reports/pytest/pytest_results.xml"],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "site.css keeps `#siteShell.shell-visible{opacity:1;}` even though the CSS-only `shellIn` animation now handles reveal — the class is no longer set by JS (per hardening) and the rule is dead code; safe to remove for clarity.",
+    "`.reveal` observer sets `.in-view` but never unobserves — minor memory retention on long pages; acceptable.",
+    "The gate/landing page `/` doesn't scroll (docH == innerH) which is intentional (viewport-locked splash). Confirm this is expected on very small phones where CTA + subline could exceed 640px height; consider allowing scroll fallback if content overflows."
+  ],
+  "updated_files": ["/app/frontend/public/assets/site.css (fixed .pace-card position:relative; .pace-card input width:0/height:0/inset — prevented horizontal overflow on /apply/ mobile+tablet)"],
+  "success_rate": {"backend": "n/a (frontend-only iteration)", "frontend": "100% of requested checks pass after 1 fix"},
+  "test_credentials": "Admin CMS password: walkthetalk",
+  "seed_data_creation": "1 Full-Stack application (QA Tester ...@example.com, Mumbai, Weekend Pace), 1 Bootcamp application (QA Boot ...@example.com, Delhi), 1 1:1 call booking (QA Call ...@example.com, Bangalore) created via playwright during regression sweep.",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "The user's mobile scroll complaint appears fully mitigated in emulation at 360/390/820: shellIn is pure CSS (no JS gate), .reveal is visible by default without html.js class (no-JS-safe path validated with java_script_enabled=False on /home/ — full DOM visible, scrollY increments), assets are ?v=3 (cache-busted), body overflow-x:clip contains any stray overflow. Fixed pace-card radios that used to extend document horizontally to 466px on 390-wide viewport. If user still reports issues on a real device, likely culprits: (a) service worker or CDN still serving old cached HTML (check `curl -I https://…/home/` for Cache-Control), (b) mobile Safari extensions, (c) very old iOS <14 not supporting overflow:clip — fallback overflow-x:hidden is present. Recommend adding <meta http-equiv='Cache-Control' content='no-cache'> or bumping the HTML file itself with an ETag change, since only assets have ?v=3 but the HTML is what phones cache aggressively.",
+  "rca of the issue": "Previous iterations 1-4 verified mobile scroll works in headless emulation, but the user still reported the issue on a real device. Likely RCA on the real device: the OLD build had Lenis smooth-scroll which hijacked touch events AND a JS-guarded siteShell that stayed at opacity:0 if the script errored on the phone — combined effect was a blank/unscrollable page. The current hardening (a) removes the JS gate — shellIn is a pure CSS keyframe animation that runs even with JS off, (b) removes Lenis / any scroll hijacking, (c) makes .reveal opaque by default (only faded when html.js is set), (d) adds `overflow-x:clip` on body and `overscroll-behavior:contain` on html, (e) cache-busts assets with ?v=3. All verified in emulation. Additional fix in this iteration: .pace-card children radios were `position:absolute` with default input width ~390px, pushing scrollWidth to 466 on 390-wide viewport — added position:relative to parent, width:0/height:0/inset:0 on the input, restoring scrollWidth==innerWidth."
+}
